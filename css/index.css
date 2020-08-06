@@ -36,10 +36,24 @@ p:last-child {
   margin-bottom: 0;
 }
 .tmpl-post p,
-.tmpl-post li,
-img {
+.tmpl-post ul {
   max-width: 37.5em; /* 600px /16 */
 }
+.tmpl-post img {
+  max-width: 100%;
+}
+
+/* 1. prism's CSS only handles pre[class*="language-"] overflow */
+.tmpl-post pre { /* 1. */
+  overflow: auto;
+}
+
+/* 2. prism's CSS only sets vertical padding for pre[class*="language-"] */
+.tmpl-post pre[class*="language-"] { /* 2. */
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
 p,
 .tmpl-post li {
   line-height: 1.45;
@@ -183,6 +197,7 @@ pre {
 }
 .postlist-item-metadata {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .postlist-item:before {
