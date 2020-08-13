@@ -106,9 +106,7 @@ module.exports = function(eleventyConfig) {
       // Better to serve these from the root path.
       "ico",
       "svg",
-      "png",
-      "xml",
-      "webmanifest"
+      "png"
     ],
 
     // If your site lives in a different subdirectory, change this.
