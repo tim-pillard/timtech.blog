@@ -9,11 +9,11 @@ eleventyNavigation:
 <h1>Hey, I'm <a href="{{ '/about/' | url }}">Tim</a> and this is my Tech Blog.</h1>
 
 <div class="home-heading">
-  <h2>Latest Posts</h2>
-  <a href="{{ '/posts/' | url }}">All posts</a>
+  <h2>Latest Articles</h2>
+  <a href="{{ '/articles/' | url }}">All articles</a>
 </div>
 
-{% set postslist = collections.posts | head(-5) %}
+{% set postslist = collections.posts | head(-3) %}
 {% set postslistCounter = collections.posts | length %}
 {% include "postslist.njk" %}
 
