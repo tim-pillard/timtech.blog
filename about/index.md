@@ -7,7 +7,7 @@ eleventyNavigation:
   order: 3
 ---
 
-Hey, my name is **Timothée “Tim” Pillard** (<a rel="me" href="https://hachyderm.io/@tpillard">hachyderm.io/@tpillard</a>, <a rel="me" href="https://twitter.com/tpillard">twitter.com/tpillard</a>, <a rel="me" href="https://github.com/ziir">github.com/ziir</a>) and this is my Tech Blog.
+Hey, my name is **Timothée “Tim” Pillard** (<a rel="me" href="https://hachyderm.io/@tpillard">hachyderm.io/@tpillard</a>, <a rel="me" href="https://twitter.com/tpillard">twitter.com/tpillard</a>, <a rel="me" href="https://github.com/tim-pillard">github.com/tim-pillard</a>) and this is my Tech Blog.
 Formerly Senior Front-End Engineer / Tech Lead at [Dashlane](https://www.dashlane.com/) / [GANDI](https://www.gandi.net/), I write about **Web Development**, **Web Performance**, **Web Security**, **JavaScript**, **TypeScript**, **React**.
 
 ## I'm Looking For A Job
@@ -25,7 +25,7 @@ Passionate about the Web, I am proficient with JavaScript, Web technologies, the
 
 ## Recent Projects
 
-In 2024, I have developed [vite-plugin-swc-transform](https://www.npmjs.com/package/vite-plugin-swc-transform) & [viteup](https://github.com/ziir/viteup).
+In 2024, I have developed [vite-plugin-swc-transform](https://www.npmjs.com/package/vite-plugin-swc-transform) & [viteup](https://github.com/tim-pillard/viteup).
 
 In 2021/2022, I have analyzed the JavaScript bundles & Babel configuration of two important Mozilla projects, and contributed to bringing their JavaScript build to the then current state of the art, leading to modest bundle size & runtime performance improvements:
 

@@ -18,7 +18,7 @@ layout: layouts/post.njk
 <img src="/img/react-server-components-rsc-no-framework-demo-screenshot.webp" alt="Screenshot of the RSC Notes App Demo / Playground" width="800" style="border: 1px solid #282c34;" />
 
 - [Live RSC Notes App Demo / Playground](https://rsc-demo.timtech.blog)
-- [Source code on GitHub](https://github.com/ziir/rsc-demo)
+- [Source code on GitHub](https://github.com/tim-pillard/rsc-demo)
 
 ## Introduction
 
@@ -29,7 +29,7 @@ Before then, I was somewhat oblivious to the <abbr title="React Server Component
 Sure, over the years, I had heard & thought quite a bit about the possibilities of a React putting a stronger focus on the server, especially when I was working at _Gandi_ for 6 years, where we had been working with React since `~v0.13.0 / 2015`, building our own, in-house, custom **_React / Redux isomorphic / universal SPA / SSR full-stack framework_**, architecture & ecosystem powering ~10 business-critical production applications.
 I had also dipped a toe in the [mozilla/addons-frontend](https://github.com/mozilla/addons-frontend) code base of [Mozilla Addons marketplace (AMO)](https://addons.mozilla.org), which leverages a comparable architecture, from the same _era_.
 
-Despite the years, the distance & perspective I now have from my old job at Gandi (I left in 2020 after 6years), the technical challenges related to my experience, striving to build a performant, resilient, capable, productive, tailored, in-house **React framework** with [progressive enhancement](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement) and `no-js` first-class support (essentially what **meta-frameworks** such as [Remix](https://remix.run/), _Next.js_ & maybe others **_can_** do **today** if you're **serious** about it), have been living rent-free in my head ever since (and I have many more like that, such as [when to use React.memo](https://timtech.blog/posts/react-memo-is-good-actually/)).
+Despite the years, the distance & perspective I now have from my old job at Gandi (I left in 2020 after 6years), the technical challenges related to my experience, striving to build a performant, resilient, capable, productive, tailored, in-house **React framework** with [progressive enhancement](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement) and `no-js` first-class support (essentially what **meta-frameworks** such as [Remix](https://remix.run/), _Next.js_ & maybe others **_can_** do **today** if you're **serious** about it), have been living rent-free in my head ever since (and I have many more like that, such as [when to use React.memo](https://timtech.blog/articles/react-memo-is-good-actually/)).
 
 So of course, when I saw on Twitter the [RSC / React Canary / Server & Client Actions announcements](#introduction) mentioned earlier, I was excited!
 Could it be? A _React-native_, official first-party solution to all the _problems of React server-side rendering_: data-fetching, waterfall, routing, latency, partial / selective hydration, in-or-out-of-order streaming, you name it: **maybe that was it**.
@@ -39,7 +39,7 @@ And so, I began an unreasonable journey, starting to look into **React Server AP
 ## RSC Survival Guide
 
 Before going any further, chances are the average reader is as confused about all this as I was when I first started looking into this a few days ago.
-Indeed, _X dot com_ is full of keywords, code snippets, memes & engagement baits while actual information regarding this topic is scattered, incomplete, missing, tied to a specific Meta-framework, focused on high level use cases, or simply slightly harder to find than the typical React content covering mature & stable patterns, such as [React controlled inputs](https://timtech.blog/posts/presentation-dashlane-react-form-handling-giving-up-control-example-controlled-input/) - ok that's the last internal backlink, I [Promise concurrently](https://timtech.blog/posts/limiting-async-operations-promise-concurrency-javascript/).
+Indeed, _X dot com_ is full of keywords, code snippets, memes & engagement baits while actual information regarding this topic is scattered, incomplete, missing, tied to a specific Meta-framework, focused on high level use cases, or simply slightly harder to find than the typical React content covering mature & stable patterns, such as [React controlled inputs](https://timtech.blog/articles/presentation-dashlane-react-form-handling-giving-up-control-example-controlled-input/) - ok that's the last internal backlink, I [Promise concurrently](https://timtech.blog/articles/limiting-async-operations-promise-concurrency-javascript/).
 
 ### Disclaimer
 
@@ -156,7 +156,7 @@ The hiring process required to complete a take-home technical exercise - althoug
 
 The assignment was essentially: **build a React Notes App**, and then some functional UI requirements.
 
-And so I started working on building the following [React Notes App](https://react-notes-app.timtech.blog/) with **Create React App**, [documenting my process on Twitter](https://twitter.com/tpillard/status/1305889708430553088) & publishing [the code on GitHub](https://github.com/ziir/react-notes-app).
+And so I started working on building the following [React Notes App](https://react-notes-app.timtech.blog/) with **Create React App**, [documenting my process on Twitter](https://twitter.com/tpillard/status/1305889708430553088) & publishing [the code on GitHub](https://github.com/tim-pillard/react-notes-app).
 
 _Notes:_
 
@@ -194,7 +194,7 @@ I also invite you to take a look at the official demo linked above & related mat
 ### RSC Notes App Demo / Playground
 
 - [Live RSC Notes App Demo / Playground](https://rsc-demo.timtech.blog)
-- [Source code on GitHub](https://github.com/ziir/rsc-demo)
+- [Source code on GitHub](https://github.com/tim-pillard/rsc-demo)
 - Open your browser devtools!
 
 ### Objectives
@@ -1016,7 +1016,7 @@ Facebook/react package source code for the APIs mentioned above, on GitHub:
 
 #### Announcements
 
-**React Server & Client Actions** were [announced on October 23rd 2023](https://twitter.com/reactjs/status/1716573234160967762) to be available in [React Canary releases](https://react.dev/community/versioning-policy#canary-channel), starting from [October 5, 2023 (18.3.0-canary-546178f91-20231005)](https://github.com/facebook/react/blob/main/CHANGELOG-canary.md#october-5-2023-1830-canary-546178f91-20231005).
+**React Server & Client Actions** were [announced on October 23rd 2023](https://twitter.com/reactjs/status/1716573234160967762) to be available in [React Canary releases](https://react.dev/community/versioning-policy#canary-channel), starting from [October 5, 2023 (18.3.0-canary-546178f91-20231005)](https://github.com/facebook/react/blob/040f8286e97eab7aac23a89d5f59967be3bf8f3e/CHANGELOG-canary.md#october-5-2023-1830-canary-546178f91-20231005).
 
 Three days later, [Next.js announced on October 26th 2023 in Next.js 14](https://twitter.com/nextjs/status/1717596665690091542) [“Server Actions (stable)”](https://nextjs.org/blog/next-14#server-actions-stable).
 

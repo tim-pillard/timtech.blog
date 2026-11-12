@@ -26,7 +26,7 @@ layout: layouts/post.njk
 > _“Just use Vite” (+ SWC)_
 
 - https://vitejs.dev
-- https://github.com/ziir/vite-plugin-swc-transform
+- https://github.com/tim-pillard/vite-plugin-swc-transform
 
 ```
 npm i --save-dev vite vite-plugin-swc-transform
@@ -93,7 +93,7 @@ Yes. Using _Babel_ instead of _tsc_ for the production code compilation would im
 **But**, Babel's rich plugin ecosystem & fine-grained transforms being its most important strengths, they're also its biggest weakness in that, they make, by nature, Babel more difficult to correctly configure & maintain over time.
 
 That is the main reason why I couldn't convince my peers to use Babel over tsc for production code compilation of a certain kind of library packages in early 2022.
-As a result, production code compilation with Babel did not make the cut to [ts-package-base](https://github.com/ziir/ts-package-base), the first iteration of my TypeScript / Decorators / Metadata / React library package setup design with dual CJS/ESM compilation.
+As a result, production code compilation with Babel did not make the cut to [ts-package-base](https://github.com/tim-pillard/ts-package-base), the first iteration of my TypeScript / Decorators / Metadata / React library package setup design with dual CJS/ESM compilation.
 
 _Note:_ To this day, Babel remains my personal favourite JavaScript compiler.
 
@@ -131,7 +131,7 @@ _Note:_ see also:
 
 ### Decorators Type Metadata (emitDecoratorMetadata / Reflect.metadata / reflect-metadata)
 
-The [Metadata API Proposal](https://rbuckton.github.io/reflect-metadata/) specifies how to inject metadata to classes & objects, primarily through decorators ("annotations"), as well as reading this metadata through [reflection](<https://en.wikipedia.org/wiki/Reflection_(computer_programming)>).
+The [Metadata API Proposal](https://microsoft.github.io/reflect-metadata/) specifies how to inject metadata to classes & objects, primarily through decorators ("annotations"), as well as reading this metadata through [reflection](<https://en.wikipedia.org/wiki/Reflection_(computer_programming)>).
 
 [TypeScript's Decorators Type Metadata](https://www.typescriptlang.org/docs/handbook/decorators.html#metadata) in particular, allows to inject **design-time** types:
 
@@ -143,7 +143,7 @@ It relies on the [experimental metadata API](https://github.com/rbuckton/reflect
 
 In TypeScript, experimental decorators type metadata support & transforms are available through the [`--emitDecoratorMetadata` flag, (`emitDecoratorMetadata` in `tsconfig.json`)](https://www.typescriptlang.org/tsconfig/emitDecoratorMetadata.html).
 
-_Note:_ see also [detailed ECMAScript Metadata Proposal](https://rbuckton.github.io/reflect-metadata/).
+_Note:_ see also [detailed ECMAScript Metadata Proposal](https://microsoft.github.io/reflect-metadata/).
 
 > _TypeScript, putting the Java back in JavaScript_
 
@@ -197,7 +197,7 @@ I'm probably already paying an overhead cost by using Vite instead of running SW
 
 Therefore, I decided to implement my own simple **Vite plugin for transforming TypeScript Decorators + Metadata source files with SWC**.
 
-See [vite-plugin-swc-transform on GitHub](https://github.com/ziir/vite-plugin-swc-transform).
+See [vite-plugin-swc-transform on GitHub](https://github.com/tim-pillard/vite-plugin-swc-transform).
 
 Please note this plugin is not necessarily meant as a replacement of alternative plugins.
 It is rather intended as a way to address my own use cases efficiently.

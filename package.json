@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/ziir/timtech.blog.git"
+    "url": "git://github.com/tim-pillard/timtech.blog.git"
   },
   "author": {
     "name": "Timothée 'Tim' Pillard",
@@ -19,7 +19,7 @@
     "url": "https://twitter.com/tpillard"
   },
   "bugs": {
-    "url": "https://github.com/ziir/timtech.blog/issues"
+    "url": "https://github.com/tim-pillard/timtech.blog/issues"
   },
   "license": "AGPL-3.0-only",
   "homepage": "https://timtech.blog",

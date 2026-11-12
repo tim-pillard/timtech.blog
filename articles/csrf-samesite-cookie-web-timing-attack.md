@@ -31,7 +31,7 @@ Updated with accurate browser compatibility info, links to the updated standard,
 [Cross-Site Request Forgery (CSRF)](https://owasp.org/www-community/attacks/csrf) - a type of attack where the user's browser is tricked into **performing unwanted actions** on a target website, on behalf of the user - are among the **most common web application security risks**.
 As such, CSRF is usually well known among web developers, and most of today's websites are sufficiently protected against its most severe forms by implementing a set of [best practices & defense mechanisms (OWASP)](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html) (ie: CSRF tokens, request origin checks, not using GET requests for state changing operations, ...).
 
-By the way, feel free to take a look at my [Cross-Origin Resource Sharing For The Web (Extension)](https://timtech.blog/posts/presentation-dashlane-web-extension-security-cross-origin-resource-sharing-CORS-OPTIONS-preflight-same-origin/) presentation for a refresher on the topic.
+By the way, feel free to take a look at my [Cross-Origin Resource Sharing For The Web (Extension)](https://timtech.blog/articles/cors-for-the-web-extension-dashlane-2021/) presentation for a refresher on the topic.
 
 ### SameSite Cookies ?
 
@@ -129,7 +129,7 @@ If they do, chances are you are **able to detect whether or not the user is logg
 However, in order to have more confidence in the results, we should update our exploit code to be aware of what constitutes _"significantly longer"_, for instance, we could draw the line at a 40% tolerance.
 We also might want our code to repeat the experiment a few times and ensure that the results are the same 80% of the time, so we'd be able to tell the results are _consistent_.
 
-[View Gist with complete example code of the malicious page](https://gist.github.com/ziir/98b79638b4cb889c1b718e56eab0f68a)
+[View Gist with complete example code of the malicious page](https://gist.github.com/tim-pillard/98b79638b4cb889c1b718e56eab0f68a)
 
 ### How could this be used ?
 

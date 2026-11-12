@@ -64,7 +64,7 @@ $ npm start
 ```
 $ rm -rf .git
 $ git init
-$ git remote add git@github.com:ziir/timtech.blog.git
+$ git remote add git@github.com:tim-pillard/timtech.blog.git
 $ git add .
 $ git commit -m "initial commit"
 $ git push origin master
