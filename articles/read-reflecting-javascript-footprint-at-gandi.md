@@ -3,7 +3,6 @@ title: Read “Reflecting on our JavaScript footprint” on Gandi's blog.
 description: On my last day at Gandi, I published an article reflecting on the relationship between Gandi and JavaScript.
 date: 2020-08-12
 tags:
-  - external
   - gandi
   - JavaScript
   - performance
