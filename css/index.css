@@ -78,8 +78,21 @@ p:last-child {
   margin-right: var(--space-s);
 }
 
+/* Article (title, date, tags and body): the same quiet white card as the
+   items of the articles list. */
 .tmpl-post article {
+  padding: var(--space-m);
   margin-bottom: var(--space-m);
+  background-color: var(--white);
+  border-radius: 0.5em;
+}
+
+.tmpl-post article > :first-child {
+  margin-top: 0;
+}
+
+.tmpl-post article > :last-child {
+  margin-bottom: 0;
 }
 
 .tmpl-post p,
@@ -123,7 +136,7 @@ a[href] {
 
 /* Content links (articles, About): blue, so they read as links at a glance.
    Navigation, titles and tags keep their own colours. */
-main > article a[href]:not(.direct-link),
+main > article a[href]:not(.direct-link):not(.post-tag),
 .intro a[href],
 .footer-links a[href] {
   color: var(--link);
@@ -583,6 +596,15 @@ h4 {
 h5,
 h6 {
   font-size: 1.1875em;
+}
+
+/* Phones (under 480px at the default font size): in an article header, the
+   tags go on their own line under the date. */
+@media (max-width: 30em) {
+  main header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 /* Very small phones (under 344px): the header title steps down a size, and
