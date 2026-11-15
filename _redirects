@@ -9,6 +9,12 @@
 /posts /articles/ 301
 /posts/* /articles/:splat 301
 
+# The Archives page and the list of all pages are removed.
+/archive /articles/ 301
+/archive/ /articles/ 301
+/page-list / 301
+/page-list/ / 301
+
 # Removed tags lead to the tag index.
 /tags/external/ /tags/ 301
 
