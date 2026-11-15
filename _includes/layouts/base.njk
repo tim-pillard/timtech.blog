@@ -46,7 +46,7 @@
         {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
         <ul class="nav">
           {%- for entry in collections.all | eleventyNavigation %}
-            <li class="nav-item{% if entry.url == page.url %} nav-item-active{% endif %}{% if entry.url == "/about/" %} nav-item-highlight{% endif %}">
+            <li class="nav-item{% if entry.url == "/about/" %} nav-item-highlight{% endif %}">
               <a href="{{ entry.url | url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a>
             </li>
           {%- endfor %}
@@ -59,11 +59,12 @@
     </main>
 
     <footer>
+      {% set firstPost = collections.posts | first %}
       <p>
-        {% set firstPost = collections.posts | first %}
         Built with <a href="https://www.11ty.dev/">Eleventy</a> and <a href="https://github.com/11ty/eleventy-base-blog">eleventy-base-blog</a>.
         <br>
         <a href="{{ firstPost.url | url }}">Setting up this blog (quickly) with Eleventy.</a>
+      </p>
         <hr>
         <ul class="footer-links">
           <li>
@@ -82,7 +83,6 @@
             <a title="Timothée Pillard on LinkedIn" href="https://www.linkedin.com/in/timoth%C3%A9e-pillard/">LinkedIn</a>
           </li>
         </ul>
-      </p>
     </footer>
   </body>
 </html>

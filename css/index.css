@@ -53,6 +53,19 @@ body {
   color: var(--darkgray);
 }
 
+/* Short pages: main takes the spare height, so the footer sits at the bottom
+   of the window instead of mid-page. */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+body > main {
+  flex: 1 0 auto;
+}
+
 hr {
   margin: var(--space-m) 0;
   border: 1px dashed var(--lightgray);
