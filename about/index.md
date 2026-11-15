@@ -25,9 +25,12 @@ Passionate about the Web, I am proficient with JavaScript, Web technologies, the
 - [Send me a DM on Twitter](https://twitter.com/tpillard)
 - [Send me an email](mailto:tim+about@timtech.blog)
 
-## Recent Projects
+## Current Projects
 
-In 2024, I have developed [vite-plugin-swc-transform](https://www.npmjs.com/package/vite-plugin-swc-transform) & [viteup](https://github.com/tim-pillard/viteup).
+- [viteup](https://github.com/tim-pillard/viteup) (2024): an opinionated way to compile TypeScript libraries, powered by Vite and SWC.
+- [vite-plugin-swc-transform](https://www.npmjs.com/package/vite-plugin-swc-transform) (2023): a Vite plugin to transform code with SWC.
+
+## Recent Projects
 
 In 2021/2022, I have analyzed the JavaScript bundles & Babel configuration of two important Mozilla projects, and contributed to bringing their JavaScript build to the then current state of the art, leading to modest bundle size & runtime performance improvements:
 
