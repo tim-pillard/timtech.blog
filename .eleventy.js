@@ -37,33 +37,27 @@ module.exports = function(eleventyConfig) {
     return array.slice(0, n);
   });
 
+  // Tags, most recently used first; tags last used in the same article are
+  // ordered by number of articles, then by name so the order is stable.
   eleventyConfig.addCollection("tagList", function(collection) {
-    let tagSet = new Set();
+    // this list should match the `filter` list in tags.njk
+    const ignored = ["all", "nav", "post", "posts"];
+    const stats = new Map();
     collection.getAll().forEach(function(item) {
-      if( "tags" in item.data ) {
-        let tags = item.data.tags;
-
-        tags = tags.filter(function(item) {
-          switch(item) {
-            // this list should match the `filter` list in tags.njk
-            case "all":
-            case "nav":
-            case "post":
-            case "posts":
-              return false;
-          }
-
-          return true;
-        });
-
-        for (const tag of tags) {
-          tagSet.add(tag);
-        }
+      for (const tag of item.data.tags || []) {
+        if (ignored.includes(tag)) continue;
+        const stat = stats.get(tag) || { latest: 0, count: 0 };
+        stat.latest = Math.max(stat.latest, item.date.getTime());
+        stat.count++;
+        stats.set(tag, stat);
       }
     });
 
-    // returning an array in addCollection works in Eleventy 0.5.3
-    return [...tagSet];
+    return [...stats.keys()].sort((a, b) =>
+      stats.get(b).latest - stats.get(a).latest ||
+      stats.get(b).count - stats.get(a).count ||
+      a.localeCompare(b)
+    );
   });
 
   eleventyConfig.addPassthroughCopy("img");
