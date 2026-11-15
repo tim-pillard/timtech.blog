@@ -1,13 +1,26 @@
 :root {
-  --red: #c5004a;
-  --darkred: #7f0036;
+  /* The one red: the dino's red in the "Open" poster the logo comes from.
+     Tags, highlighted links, inline code, header/footer lines. 5.1:1 on --page. */
+  --red: #c53930;
   --lightgray: #e0e0e0;
+  --palegray: #f0f0f0;
   --gray: #c0c0c0;
   --darkgray: #333;
-  --navy: #17050f;
   --blue: #082840;
+  /* Links inside article and page content: a plain, classic blue (6.9:1 on --page).
+     Visited links look the same as unvisited ones, everywhere. */
+  --link: #0f52ba;
   --white: #fff;
-  --content-width: 75rem;
+  --page: #fffaf5;
+  --content-width: 75em;
+
+  /* Spacing scale. Every margin, padding and gap uses one of these steps.
+     They are em, so spacing follows the font size of the element it is on. */
+  --space-2xs: 0.125em;
+  --space-xs: 0.25em;
+  --space-s: 0.5em;
+  --space-m: 1em;
+  --space-l: 2em;
 }
 
 * {
@@ -35,13 +48,19 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Fira Sans", system-ui, sans-serif;
-  font-size: 16px;
-  background-color: var(--white);
+  font-size: 100%;
+  background-color: var(--page);
   color: var(--darkgray);
 }
 
 hr {
+  margin: var(--space-m) 0;
   border: 1px dashed var(--lightgray);
+}
+
+ul,
+ol {
+  padding-left: var(--space-l);
 }
 
 p:last-child {
@@ -56,11 +75,11 @@ p:last-child {
 
 .home-heading h2 {
   margin-bottom: 0;
-  margin-right: 0.5em;
+  margin-right: var(--space-s);
 }
 
 .tmpl-post article {
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-m);
 }
 
 .tmpl-post p,
@@ -80,26 +99,40 @@ p:last-child {
 /* 2. prism's CSS only sets vertical padding for pre[class*="language-"] */
 .tmpl-post pre[class*="language-"] {
   /* 2. */
-  padding-left: 1em;
-  padding-right: 1em;
+  padding-left: var(--space-m);
+  padding-right: var(--space-m);
 }
 
 p,
-.tmpl-post li {
+main > article li,
+.more li {
   line-height: 1.45;
 }
 
+/* Air between bullets, so underlined links on consecutive items stay apart. */
+main > article li + li,
+.more li + li {
+  margin-top: var(--space-s);
+}
+
 a[href] {
+  text-underline-offset: 0.25em;
   color: var(--blue);
 }
 
-a[href]:visited {
-  color: var(--navy);
+
+/* Content links (articles, About): blue, so they read as links at a glance.
+   Navigation, titles and tags keep their own colours. */
+main > article a[href]:not(.direct-link),
+.intro a[href],
+.footer-links a[href] {
+  color: var(--link);
 }
+
 
 header,
 main {
-  padding: 1rem;
+  padding: var(--space-m);
 }
 
 main :first-child {
@@ -107,13 +140,20 @@ main :first-child {
 }
 
 body > header {
-  padding-bottom: 0;
-  border-bottom: 1px dashed var(--lightgray);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-bottom: var(--space-m);
+  border-bottom: 1px dashed var(--red);
 }
 
 body > footer {
-  padding: 1rem;
-  border-top: 1px dashed var(--lightgray);
+  padding: var(--space-m);
+  border-top: 1px dashed var(--red);
+}
+
+/* On the children, so the footer padding stays aligned with header and main. */
+body > footer > * {
   font-size: 0.875em;
 }
 
@@ -129,7 +169,7 @@ ul.footer-links li {
 }
 
 ul.footer-links li {
-  padding: 0.125em;
+  padding: var(--space-2xs);
 }
 
 body > header,
@@ -140,29 +180,27 @@ body > footer {
   margin: 0 auto;
 }
 
-body > header:after {
-  content: "";
-  display: table;
-  clear: both;
-}
 
 main header {
   display: flex;
   flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-s);
+  margin-bottom: var(--space-m);
   padding: 0;
 }
 
 main footer {
-  margin-top: 1rem;
+  margin-top: var(--space-m);
 }
 
 table {
-  margin: 1em 0;
+  margin: var(--space-m) 0;
 }
 
 table td,
 table th {
-  padding-right: 1em;
+  padding-right: var(--space-m);
   text-align: left;
 }
 
@@ -176,7 +214,7 @@ code {
 }
 
 pre {
-  font-size: 14px;
+  font-size: 0.875em;
   line-height: 1.375;
   direction: ltr;
   text-align: left;
@@ -190,21 +228,21 @@ pre {
   -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
-  padding: 1em;
-  margin: 0.5em 0;
+  padding: var(--space-m);
+  margin: var(--space-s) 0;
   background-color: #f6f6f6;
 }
 
 code:not(pre > code) {
-  padding: 1px 3px;
+  padding: 0 var(--space-xs);
   color: var(--red);
-  background-color: var(--lightgray);
-  border-radius: 3px;
+  background-color: var(--palegray); /* keeps the red above 4.5:1 */
+  border-radius: 0.25em;
 }
 
 .highlight-line {
   display: block;
-  padding: 0.125em 1em;
+  padding: var(--space-2xs) var(--space-m);
   text-decoration: none; /* override del, ins, mark defaults */
   color: inherit; /* override del, ins, mark defaults */
 }
@@ -237,37 +275,140 @@ code:not(pre > code) {
   background-color: #902f2f;
 }
 
-/* Header */
-body > header h1 {
-  float: left;
-  margin: 0 2rem 1rem 0; /* 16px /16 */
-  font-size: 1em; /* 16px /16 */
+/* A link in the accent colour, for the few that should stand out. */
+a[href].accent-link {
+  color: var(--red);
 }
 
-body > header h1 :link:not(:hover) {
+a[href].accent-link:hover {
+  color: var(--blue);
+}
+
+/* Hidden on screen, still read by screen readers and kept in the heading outline. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Home greeting: a notch under the site title, which stays the biggest. */
+.greeting {
+  font-size: 1.125em; /* 18px /16 */
+}
+
+/* Header */
+body > header h1 {
+  margin: 0;
+  font-size: 1.5em; /* 24px /16 */
+}
+
+body > header h1 a {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* The logo is a greyscale image. On hover or keyboard focus it turns red with
+   CSS only: the frame behind it takes the site red and the image is multiplied
+   onto it, so white areas become red and black stays black. No second image. */
+.site-logo-frame {
+  display: inline-flex;
+  margin-right: var(--space-s);
+  border-radius: 0.375em;
+  overflow: hidden;
+  isolation: isolate;
+  transition: background-color 0.2s ease-out;
+}
+
+.site-logo {
+  display: block;
+  width: 2em; /* 48px /24 */
+  height: 2em;
+  mix-blend-mode: multiply;
+  transition: filter 0.2s ease-out;
+}
+
+body > header h1 a:hover .site-logo-frame,
+body > header h1 a:focus-visible .site-logo-frame,
+body > header h1 a:active .site-logo-frame {
+  background-color: var(--red);
+}
+
+/* Keyboard focus on the logo link: a black ring around the logo itself,
+   in place of the browser ring around the whole link. */
+body > header h1 a:focus-visible {
+  outline: none;
+}
+
+body > header h1 a:focus-visible .site-logo-frame {
+  outline: 1px solid #000;
+  outline-offset: 0;
+}
+
+/* Lifts the mid-greys so the red stays bright instead of muddy. */
+body > header h1 a:hover .site-logo,
+body > header h1 a:focus-visible .site-logo,
+body > header h1 a:active .site-logo {
+  filter: brightness(1.35) contrast(1.1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-logo-frame,
+  .site-logo {
+    transition: none;
+  }
+}
+
+body > header h1 a:not(:hover) {
   text-decoration: none;
 }
 
 /* Nav */
+body > header nav {
+  margin-left: auto;
+}
+
+.nav-item:last-child {
+  margin-right: 0;
+}
+
 .nav {
   padding: 0;
   list-style: none;
-  float: left;
-  margin: 0 0 1rem 0;
+  margin: 0;
 }
 
 .nav-item {
   display: inline-block;
-  margin-right: 1em;
+  margin-right: var(--space-m);
 }
 
 .nav-item a[href]:not(:hover) {
   text-decoration: none;
 }
 
-.nav-item-active {
-  font-weight: 700;
-  text-decoration: underline;
+/* The one link that stands out: same outline as the tags. */
+.nav-item-highlight a[href] {
+  display: inline-block;
+  padding: var(--space-xs) var(--space-s);
+  border: 1px solid var(--red);
+  border-radius: 0.25em;
+  color: var(--red);
+}
+
+/* Hover, pressed, and current page: the colours swap (white on red, 5.25:1),
+   with no underline. */
+.nav-item-highlight a[href]:hover,
+.nav-item-highlight a[href]:active,
+.nav-item-highlight a[href][aria-current="page"] {
+  color: var(--white);
+  background-color: var(--red);
+  text-decoration: none;
 }
 
 /* Posts list */
@@ -277,13 +418,28 @@ body > header h1 :link:not(:hover) {
   margin-bottom: 0;
 }
 
+/* Each article is a quiet card: white on the warm page, slightly rounded. */
 .postlist-item {
-  display: flex;
+  padding: var(--space-m);
+  margin-bottom: var(--space-m);
+  background-color: var(--white);
+  border-radius: 0.5em;
+}
+
+.postlist-item .postlist-date {
+  margin-right: 0;
+  margin-bottom: var(--space-s);
+}
+
+.postlist-item h3 {
+  margin: 0 0 var(--space-s);
 }
 
 .postlist-item-metadata {
   display: flex;
   flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-s);
 }
 
 .postlist-date,
@@ -292,8 +448,15 @@ body > header h1 :link:not(:hover) {
   color: var(--darkgray);
 }
 
+/* The date is a small grey badge. */
 .postlist-date {
-  word-spacing: -0.5px;
+  display: inline-block;
+  padding: var(--space-xs) var(--space-s);
+  margin-right: var(--space-s);
+  background-color: var(--lightgray);
+  border-radius: 0.25em;
+  font-weight: 700;
+  word-spacing: -0.04em;
 }
 
 .postlist-item-active .postlist-link {
@@ -305,54 +468,69 @@ body > header h1 :link:not(:hover) {
   font-weight: 700;
 }
 
+/* Label of the next/previous block under an article. Not a heading, so it
+   stays out of the article outline; it names the <nav> via aria-labelledby. */
+.more-title {
+  margin: var(--space-m) 0 var(--space-s);
+  font-weight: 700;
+}
+
 .more {
+  margin-top: 0;
   margin-bottom: 0;
 }
 
-/* Tags */
+/* Tags: quiet pills, slightly rounded. About 27px tall at the default font size. */
 .post-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s);
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
-.post-tags-list .post-tag:first-child {
-  margin-left: 0;
-}
-
 .post-tag {
   display: inline-block;
-  min-width: 48px;
-  height: 48px;
-  padding-top: 0;
-  vertical-align: text-top;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: bold;
+  font-family: system-ui, sans-serif;
   font-size: 0.625em; /* 10px /16 */
-  padding: 0.2em;
-  margin-left: 0.8em; /* 8px /10 */
-  color: var(--red);
-  border-radius: 0.25em; /* 3px /12 */
+  font-weight: bold;
+  line-height: 1.5;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: var(--space-s) var(--space-m);
+  border: 1px solid var(--red);
+  border-radius: 0.5em;
+  /* Slightly skeuomorphic button: lit from above, with a solid edge and a
+     soft shadow below. It sinks on hover and is pressed flat when active. */
+  background-image: linear-gradient(var(--white), #fdeee4);
+  box-shadow: inset 0 1px 0 var(--white), 0 0.2em 0 currentColor,
+    0 0.3em 0.3em rgba(0, 0, 0, 0.15);
 }
 
-.post-tag a[href],
-.post-tag a[href]:visited,
-a[href].post-tag,
-a[href].post-tag:visited {
+a[href].post-tag {
   color: var(--red);
   text-decoration: none;
 }
 
-.post-tag a[href]:hover,
 a[href].post-tag:hover {
   color: var(--blue);
+  border-color: currentColor;
+  box-shadow: inset 0 1px 0 var(--white), 0 0.1em 0 currentColor,
+    0 0.15em 0.15em rgba(0, 0, 0, 0.15);
+  transform: translateY(0.1em);
+}
+
+a[href].post-tag:active {
+  background-image: linear-gradient(#fdeee4, var(--white));
+  box-shadow: inset 0 0.1em 0.2em rgba(0, 0, 0, 0.2);
+  transform: translateY(0.2em);
 }
 
 /* Warning */
 .warning {
   background-color: #ffc;
-  padding: 1em 0.625em; /* 16px 10px /16 */
+  padding: var(--space-m) var(--space-s);
 }
 
 .warning ol:only-child {
@@ -364,38 +542,53 @@ a[href].post-tag:hover {
   font-family: sans-serif;
   text-decoration: none;
   font-style: normal;
-  margin-left: 0.1em;
+  margin-left: var(--space-2xs);
 }
 
-a[href].direct-link,
-a[href].direct-link:visited {
+a[href].direct-link {
   color: transparent;
 }
 
 a[href].direct-link:focus,
-a[href].direct-link:focus:visited,
-:hover > a[href].direct-link,
-:hover > a[href].direct-link:visited {
+:hover > a[href].direct-link {
   color: #aaa;
 }
 
+/* Room for the link underline when a heading wraps onto several lines. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.4;
+}
+
 h1 {
-  font-size: 1.875rem;
+  font-size: 1.875em;
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: 1.5em;
 }
 
 h3 {
-  font-size: 1.375rem;
+  font-size: 1.375em;
 }
 
 h4 {
-  font-size: 1.25rem;
+  font-size: 1.25em;
 }
 
 h5,
 h6 {
-  font-size: 1.1875rem;
+  font-size: 1.1875em;
+}
+
+/* Very small phones (under 344px): the header title steps down a size, and
+   the logo with it, so the row keeps some air. */
+@media (max-width: 21.5em) {
+  body > header h1 {
+    font-size: 1.25em;
+  }
 }

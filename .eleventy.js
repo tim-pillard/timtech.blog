@@ -15,8 +15,12 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addLayoutAlias("post", "layouts/post.njk");
 
+  // American style, as newspapers write it (AP): "Nov. 7, 2023". Short months
+  // (March to July) are spelled out, the others are abbreviated with a period.
+  const AP_MONTHS = ["Jan.", "Feb.", "March", "April", "May", "June", "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."];
   eleventyConfig.addFilter("readableDate", dateObj => {
-    return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat("dd LLL yyyy");
+    const date = DateTime.fromJSDate(dateObj, {zone: 'utc'});
+    return `${AP_MONTHS[date.month - 1]} ${date.day}, ${date.year}`;
   });
 
   // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string

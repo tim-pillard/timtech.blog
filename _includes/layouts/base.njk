@@ -40,14 +40,14 @@
   <body>
     <header>
       <h1>
-        <a href="{{ '/' | url }}">{{ metadata.title }}</a>
+        <a href="{{ '/' | url }}"><span class="site-logo-frame"><img class="site-logo" src="{{ '/img/logo-dino-144.webp' | url }}" alt="" width="48" height="48"></span>{{ metadata.title }}</a>
       </h1>
       <nav role="navigation" aria-label="Main">
         {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
         <ul class="nav">
           {%- for entry in collections.all | eleventyNavigation %}
-            <li class="nav-item{% if entry.url == page.url %} nav-item-active{% endif %}">
-              <a href="{{ entry.url | url }}">{{ entry.title }}</a>
+            <li class="nav-item{% if entry.url == page.url %} nav-item-active{% endif %}{% if entry.url == "/about/" %} nav-item-highlight{% endif %}">
+              <a href="{{ entry.url | url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a>
             </li>
           {%- endfor %}
         </ul>

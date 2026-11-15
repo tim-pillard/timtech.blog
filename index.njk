@@ -1,12 +1,12 @@
 ---
 layout: layouts/home.njk
 standalone: true
-eleventyNavigation:
-  key: Home
-  order: 1
 ---
+<h1 class="greeting">Hey, I'm <a class="accent-link" href="{{ '/about/' | url }}">Tim</a> 👋</h1>
 
-<h1>Hey, I'm <a href="{{ '/about/' | url }}">Tim</a> and this is my Tech Blog.</h1>
+{#- Shared with the start of the About page: edit _includes/intro.html. #}
+{% set introLearnMore = true %}
+{% include "intro.html" %}
 
 <div class="home-heading">
   <h2>Latest Articles</h2>
@@ -17,13 +17,14 @@ eleventyNavigation:
 {% set postslistCounter = collections.posts | length %}
 {% include "postslist.njk" %}
 
-<h2>Tags</h2>
+<hr>
+<h2 class="visually-hidden">Tags</h2>
 
 <ul class="post-tags-list">
   {% for tag in collections.tagList %}
     {% set tagUrl %}/tags/{{ tag | lower }}/{% endset %}
-    <li class="post-tag">
-      <a href="{{ tagUrl | url }}">{{ tag }}</a>
+    <li>
+      <a href="{{ tagUrl | url }}" class="post-tag">{{ tag }}</a>
     </li>
   {% endfor %}
 </ul>
