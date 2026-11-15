@@ -15,8 +15,12 @@
 /page-list / 301
 /page-list/ / 301
 
-# Removed tags lead to the tag index.
-/tags/external/ /tags/ 301
+# The list of all tags is removed (the tags are on the home page). Exact
+# matches only: the tag pages (/tags/react/ ...) stay. Removed tags go
+# straight to the home page too, in one hop.
+/tags / 301
+/tags/ / 301
+/tags/external/ / 301
 
 # Old CV and résumé URLs all lead to the current CV. The old files are removed from public/
 # so that these rules apply (a redirect does not override an existing file on Netlify).

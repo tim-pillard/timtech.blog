@@ -19,9 +19,3 @@ permalink: /tags/{{ tag | lower }}/
 
 {% set postslist = collections[tag] %}
 {% include "postslist.njk" %}
-
-<p>
-  <a href="{{ '/tags/' | url }}">See all tags.</a>
-  <br/>
-  <a href="{{ '/articles/' | url }}">See all articles.</a>
-</p>
