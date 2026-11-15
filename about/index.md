@@ -7,14 +7,14 @@ eleventyNavigation:
   order: 3
 ---
 
-Hey, my name is **Timothée “Tim” Pillard** (<a rel="me" href="https://hachyderm.io/@tpillard">hachyderm.io/@tpillard</a>, <a rel="me" href="https://twitter.com/tpillard">twitter.com/tpillard</a>, <a rel="me" href="https://github.com/tim-pillard">github.com/tim-pillard</a>) and this is my Tech Blog.
+Hey, my name is **Timothée “Tim” Pillard** and this is my Tech Blog.
 
 {% comment %}Shared with the home page: edit _includes/intro.html.{% endcomment %}
 {% include intro.html %}
 
 ## I'm Looking For A Job
 
-I'm a Software Engineer with 10+ years of professional experience building business-critical & public-facing web applications and websites in various environments.
+I'm a Staff Software Engineer with 13+ years of professional experience building business-critical & public-facing web applications and websites in various environments.
 Passionate about the Web, I am proficient with JavaScript, Web technologies, the modern Front-end ecosystem and related tooling, with a strong focus on performance and security.
 
 [Download my CV (pdf)](/public/Timoth%C3%A9e%20Pillard's%20CV%202026.pdf)
