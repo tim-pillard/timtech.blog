@@ -1,0 +1,13 @@
+---
+pagination:
+  data: collections.posts
+  size: 1
+  alias: post
+permalink: "{{ post.url }}index.md"
+eleventyExcludeFromCollections: true
+---
+# {{ post.data.title | safe }}
+
+{{ metadata.author.name }}, {{ post.date | htmlDateString }}. Canonical URL: {{ post.url | url | absoluteUrl(metadata.url) }}
+
+{{ post.template.frontMatter.content | safe }}

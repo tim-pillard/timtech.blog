@@ -1,0 +1,8 @@
+# Articles are served as HTML or Markdown depending on the Accept header
+# (netlify/edge-functions/markdown.ts), so caches must key on it.
+/articles/*
+  Vary: Accept
+
+/articles/*/index.md
+  Content-Type: text/markdown; charset=utf-8
+  X-Robots-Tag: noindex
