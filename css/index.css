@@ -551,11 +551,16 @@ a[href].post-tag:active {
 }
 
 /* Direct Links / Markdown Headers */
+/* Zero width, so the "#" never wraps onto a line of its own (which added an
+   empty line under headings that fill the row). It overflows into the page
+   padding when shown. */
 .direct-link {
+  display: inline-block;
+  width: 0;
+  white-space: nowrap;
   font-family: sans-serif;
   text-decoration: none;
   font-style: normal;
-  margin-left: var(--space-2xs);
 }
 
 a[href].direct-link {
