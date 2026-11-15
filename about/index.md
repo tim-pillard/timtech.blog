@@ -8,7 +8,9 @@ eleventyNavigation:
 ---
 
 Hey, my name is **Timothée “Tim” Pillard** (<a rel="me" href="https://hachyderm.io/@tpillard">hachyderm.io/@tpillard</a>, <a rel="me" href="https://twitter.com/tpillard">twitter.com/tpillard</a>, <a rel="me" href="https://github.com/tim-pillard">github.com/tim-pillard</a>) and this is my Tech Blog.
-Formerly Senior Front-End Engineer / Tech Lead at [Dashlane](https://www.dashlane.com/) / [GANDI](https://www.gandi.net/), I write about **Web Development**, **Web Performance**, **Web Security**, **JavaScript**, **TypeScript**, **React**.
+
+{% comment %}Shared with the home page: edit _includes/intro.html.{% endcomment %}
+{% include intro.html %}
 
 ## I'm Looking For A Job
 

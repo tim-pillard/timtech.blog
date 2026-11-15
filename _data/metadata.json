@@ -2,9 +2,9 @@
   "title": "Tim's Tech Blog",
   "short_name": "Tim's Blog",
   "url": "https://timtech.blog/",
-  "description": "I write about Web Development, Web Performance, Web Security, JavaScript, TypeScript, React.",
+  "description": "I write mainly about React, Web Performance, Web Security, the JavaScript ecosystem and build tooling.",
   "feed": {
-    "subtitle": "I write about Web Development, Web Performance, Web Security, JavaScript, TypeScript, React.",
+    "subtitle": "I write mainly about React, Web Performance, Web Security, the JavaScript ecosystem and build tooling.",
     "filename": "feed.xml",
     "path": "/feed/feed.xml",
     "id": "https://timtech.blog/"
