@@ -18,4 +18,5 @@ permalink: /tags/{{ tag | lower }}/
 <h1><em>“{{ tag }}”</em> articles</h1>
 
 {% set postslist = collections[tag] %}
+{% set postslistLevel = 2 %}
 {% include "postslist.njk" %}

@@ -4,7 +4,6 @@
   --red: #c53930;
   --lightgray: #e0e0e0;
   --palegray: #f0f0f0;
-  --gray: #c0c0c0;
   --darkgray: #333;
   --blue: #082840;
   /* Links inside article and page content: a plain, classic blue (6.9:1 on --page).
@@ -12,15 +11,27 @@
   --link: #0f52ba;
   --white: #fff;
   --page: #fffaf5;
-  --content-width: 75em;
+  --content-width: 75rem;
 
-  /* Spacing scale. Every margin, padding and gap uses one of these steps.
-     They are em, so spacing follows the font size of the element it is on. */
-  --space-2xs: 0.125em;
-  --space-xs: 0.25em;
-  --space-s: 0.5em;
-  --space-m: 1em;
-  --space-l: 2em;
+  /* Spacing, in three units, each where it fits.
+
+     rem: layout. Page padding, cards, gaps between blocks. The same size
+     wherever it is used, and it follows the reader's browser font size. */
+  --space-s: 0.5rem;
+  --space-m: 1rem;
+
+  /* em: inside a component. Padding of tags, badges, code and buttons, gaps
+     in running text. It follows the font size of the element itself, so a
+     small tag gets small padding. */
+  --space-em-2xs: 0.125em;
+  --space-em-xs: 0.25em;
+  --space-em-s: 0.5em;
+  --space-em-m: 1em;
+  --space-em-l: 2em;
+
+  /* px: hairlines. Borders and outlines stay one device-independent pixel,
+     whatever the font size or zoom setting. */
+  --hairline: 1px;
 }
 
 * {
@@ -68,12 +79,12 @@ body > main {
 
 hr {
   margin: var(--space-m) 0;
-  border: 1px dashed var(--lightgray);
+  border: var(--hairline) dashed var(--lightgray);
 }
 
 ul,
 ol {
-  padding-left: var(--space-l);
+  padding-left: var(--space-em-l);
 }
 
 p:last-child {
@@ -87,8 +98,7 @@ p:last-child {
 }
 
 .home-heading h2 {
-  margin-bottom: 0;
-  margin-right: var(--space-s);
+  margin: 0 var(--space-em-s) 0 0;
 }
 
 /* Article (title, date, tags and body): the same quiet white card as the
@@ -125,8 +135,8 @@ p:last-child {
 /* 2. prism's CSS only sets vertical padding for pre[class*="language-"] */
 .tmpl-post pre[class*="language-"] {
   /* 2. */
-  padding-left: var(--space-m);
-  padding-right: var(--space-m);
+  padding-left: var(--space-em-m);
+  padding-right: var(--space-em-m);
 }
 
 p,
@@ -138,7 +148,7 @@ main > article li,
 /* Air between bullets, so underlined links on consecutive items stay apart. */
 main > article li + li,
 .more li + li {
-  margin-top: var(--space-s);
+  margin-top: var(--space-em-s);
 }
 
 a[href] {
@@ -161,7 +171,9 @@ main {
   padding: var(--space-m);
 }
 
-main :first-child {
+/* Only the first element of the page: no gap under the header line.
+   Direct child only, so it does not reach first elements deeper in the page. */
+main > :first-child {
   margin-top: 0;
 }
 
@@ -169,18 +181,23 @@ body > header {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  padding-bottom: var(--space-m);
-  border-bottom: 1px dashed var(--red);
+  border-bottom: var(--hairline) dashed var(--red);
 }
 
 body > footer {
   padding: var(--space-m);
-  border-top: 1px dashed var(--red);
+  border-top: var(--hairline) dashed var(--red);
 }
 
 /* On the children, so the footer padding stays aligned with header and main. */
 body > footer > * {
   font-size: 0.875em;
+}
+
+/* Between the two lines of small footer text, so it follows that text (em),
+   unlike the page-level separators (rem). */
+body > footer hr {
+  margin: var(--space-em-m) 0;
 }
 
 body > footer p {
@@ -195,7 +212,7 @@ ul.footer-links li {
 }
 
 ul.footer-links li {
-  padding: var(--space-2xs);
+  padding: var(--space-em-2xs);
 }
 
 body > header,
@@ -220,16 +237,6 @@ main footer {
   margin-top: var(--space-m);
 }
 
-table {
-  margin: var(--space-m) 0;
-}
-
-table td,
-table th {
-  padding-right: var(--space-m);
-  text-align: left;
-}
-
 pre,
 code {
   font-family: Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono",
@@ -247,20 +254,16 @@ pre {
   white-space: pre;
   word-spacing: normal;
   word-break: normal;
-  -moz-tab-size: 2;
-  -o-tab-size: 2;
   tab-size: 2;
   -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
   hyphens: none;
-  padding: var(--space-m);
-  margin: var(--space-s) 0;
+  padding: var(--space-em-m);
+  margin: var(--space-em-s) 0;
   background-color: #f6f6f6;
 }
 
 code:not(pre > code) {
-  padding: 0 var(--space-xs);
+  padding: 0 var(--space-em-xs);
   color: var(--red);
   background-color: var(--palegray); /* keeps the red above 4.5:1 */
   border-radius: 0.25em;
@@ -268,7 +271,7 @@ code:not(pre > code) {
 
 .highlight-line {
   display: block;
-  padding: var(--space-2xs) var(--space-m);
+  padding: var(--space-em-2xs) var(--space-em-m);
   text-decoration: none; /* override del, ins, mark defaults */
   color: inherit; /* override del, ins, mark defaults */
 }
@@ -283,13 +286,7 @@ code:not(pre > code) {
   display: none;
 }
 
-.highlight-line-isdir {
-  color: #b0b0b0;
-  background-color: #222;
-}
-
 .highlight-line-active {
-  background-color: #444;
   background-color: hsla(0, 0%, 27%, 0.8);
 }
 
@@ -306,7 +303,8 @@ a[href].accent-link {
   color: var(--red);
 }
 
-a[href].accent-link:hover {
+a[href].accent-link:hover,
+a[href].accent-link:focus-visible {
   color: var(--blue);
 }
 
@@ -323,18 +321,26 @@ a[href].accent-link:hover {
   border: 0;
 }
 
-/* Home greeting: a notch under the site title, which stays the biggest. */
+/* Home greeting: a notch under the site title, which stays the biggest.
+   A paragraph, not a heading: the h1 of the home page is the site title. */
 .greeting {
+  margin: 0 0 0.67em;
   font-size: 1.125em; /* 18px /16 */
+  font-weight: 700;
+  line-height: 1.4;
 }
 
 /* Header */
-body > header h1 {
+/* The site title is the h1 on the home page only; on the other pages it is a
+   plain element and the page title is the h1. Same look either way. */
+.site-title {
   margin: 0;
   font-size: 1.5em; /* 24px /16 */
+  font-weight: 700;
+  line-height: 1.4;
 }
 
-body > header h1 a {
+.site-title a {
   display: inline-flex;
   align-items: center;
 }
@@ -344,7 +350,7 @@ body > header h1 a {
    onto it, so white areas become red and black stays black. No second image. */
 .site-logo-frame {
   display: inline-flex;
-  margin-right: var(--space-s);
+  margin-right: var(--space-em-s);
   border-radius: 0.375em;
   overflow: hidden;
   isolation: isolate;
@@ -359,27 +365,27 @@ body > header h1 a {
   transition: filter 0.2s ease-out;
 }
 
-body > header h1 a:hover .site-logo-frame,
-body > header h1 a:focus-visible .site-logo-frame,
-body > header h1 a:active .site-logo-frame {
+.site-title a:hover .site-logo-frame,
+.site-title a:focus-visible .site-logo-frame,
+.site-title a:active .site-logo-frame {
   background-color: var(--red);
 }
 
 /* Keyboard focus on the logo link: a black ring around the logo itself,
    in place of the browser ring around the whole link. */
-body > header h1 a:focus-visible {
+.site-title a:focus-visible {
   outline: none;
 }
 
-body > header h1 a:focus-visible .site-logo-frame {
-  outline: 1px solid #000;
+.site-title a:focus-visible .site-logo-frame {
+  outline: var(--hairline) solid #000;
   outline-offset: 0;
 }
 
 /* Lifts the mid-greys so the red stays bright instead of muddy. */
-body > header h1 a:hover .site-logo,
-body > header h1 a:focus-visible .site-logo,
-body > header h1 a:active .site-logo {
+.site-title a:hover .site-logo,
+.site-title a:focus-visible .site-logo,
+.site-title a:active .site-logo {
   filter: brightness(1.35) contrast(1.1);
 }
 
@@ -390,7 +396,7 @@ body > header h1 a:active .site-logo {
   }
 }
 
-body > header h1 a:not(:hover) {
+.site-title a:not(:hover) {
   text-decoration: none;
 }
 
@@ -421,15 +427,16 @@ body > header nav {
 /* The one link that stands out: same outline as the tags. */
 .nav-item-highlight a[href] {
   display: inline-block;
-  padding: var(--space-xs) var(--space-s);
-  border: 1px solid var(--red);
+  padding: var(--space-em-xs) var(--space-em-s);
+  border: var(--hairline) solid var(--red);
   border-radius: 0.25em;
   color: var(--red);
 }
 
-/* Hover, pressed, and current page: the colours swap (white on red, 5.25:1),
+/* Hover, keyboard focus, pressed, and current page: the colours swap (white on red, 5.25:1),
    with no underline. */
 .nav-item-highlight a[href]:hover,
+.nav-item-highlight a[href]:focus-visible,
 .nav-item-highlight a[href]:active,
 .nav-item-highlight a[href][aria-current="page"] {
   color: var(--white);
@@ -454,11 +461,13 @@ body > header nav {
 
 .postlist-item .postlist-date {
   margin-right: 0;
-  margin-bottom: var(--space-s);
+  margin-bottom: var(--space-em-s);
 }
 
-.postlist-item h3 {
-  margin: 0 0 var(--space-s);
+/* Same size whatever the heading level (h3 on the home page, h2 on lists). */
+.postlist-title {
+  margin: 0 0 var(--space-em-s);
+  font-size: 1.375em;
 }
 
 .postlist-item-metadata {
@@ -468,8 +477,7 @@ body > header nav {
   gap: var(--space-s);
 }
 
-.postlist-date,
-.postlist-item:before {
+.postlist-date {
   font-size: 0.8125em; /* 13px /16 */
   color: var(--darkgray);
 }
@@ -477,16 +485,12 @@ body > header nav {
 /* The date is a small grey badge. */
 .postlist-date {
   display: inline-block;
-  padding: var(--space-xs) var(--space-s);
-  margin-right: var(--space-s);
+  padding: var(--space-em-xs) var(--space-em-s);
+  margin-right: var(--space-em-s);
   background-color: var(--lightgray);
   border-radius: 0.25em;
   font-weight: 700;
   word-spacing: -0.04em;
-}
-
-.postlist-item-active .postlist-link {
-  font-weight: bold;
 }
 
 .tmpl-home .postlist-link {
@@ -524,13 +528,13 @@ body > header nav {
   line-height: 1.5;
   text-transform: uppercase;
   white-space: nowrap;
-  padding: var(--space-s) var(--space-m);
-  border: 1px solid var(--red);
+  padding: var(--space-em-s) var(--space-em-m);
+  border: var(--hairline) solid var(--red);
   border-radius: 0.5em;
   /* Slightly skeuomorphic button: lit from above, with a solid edge and a
      soft shadow below. It sinks on hover and is pressed flat when active. */
   background-image: linear-gradient(var(--white), #fdeee4);
-  box-shadow: inset 0 1px 0 var(--white), 0 0.2em 0 currentColor,
+  box-shadow: inset 0 var(--hairline) 0 var(--white), 0 0.2em 0 currentColor,
     0 0.3em 0.3em rgba(0, 0, 0, 0.15);
 }
 
@@ -539,10 +543,11 @@ a[href].post-tag {
   text-decoration: none;
 }
 
-a[href].post-tag:hover {
+a[href].post-tag:hover,
+a[href].post-tag:focus-visible {
   color: var(--blue);
   border-color: currentColor;
-  box-shadow: inset 0 1px 0 var(--white), 0 0.1em 0 currentColor,
+  box-shadow: inset 0 var(--hairline) 0 var(--white), 0 0.1em 0 currentColor,
     0 0.15em 0.15em rgba(0, 0, 0, 0.15);
   transform: translateY(0.1em);
 }
@@ -551,16 +556,6 @@ a[href].post-tag:active {
   background-image: linear-gradient(#fdeee4, var(--white));
   box-shadow: inset 0 0.1em 0.2em rgba(0, 0, 0, 0.2);
   transform: translateY(0.2em);
-}
-
-/* Warning */
-.warning {
-  background-color: #ffc;
-  padding: var(--space-m) var(--space-s);
-}
-
-.warning ol:only-child {
-  margin: 0;
 }
 
 /* Direct Links / Markdown Headers */
@@ -582,7 +577,7 @@ a[href].direct-link {
 
 a[href].direct-link:focus,
 :hover > a[href].direct-link {
-  color: #aaa;
+  color: #6e6e6e; /* 4.92:1 on --page */
 }
 
 /* Room for the link underline when a heading wraps onto several lines. */
@@ -628,7 +623,7 @@ h6 {
 /* Very small phones (under 344px): the header title steps down a size, and
    the logo with it, so the row keeps some air. */
 @media (max-width: 21.5em) {
-  body > header h1 {
+  .site-title {
     font-size: 1.25em;
   }
 }

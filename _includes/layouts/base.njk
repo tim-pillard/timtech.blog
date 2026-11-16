@@ -42,10 +42,12 @@
   </head>
   <body>
     <header>
-      <h1>
+      {#- The site title is the h1 on the home page only; elsewhere the page title is. #}
+      {%- set siteTitleTag = "h1" if page.url == "/" else "p" %}
+      <{{ siteTitleTag }} class="site-title">
         <a href="{{ '/' | url }}"><span class="site-logo-frame"><img class="site-logo" src="{{ '/img/logo-dino-144.webp' | url }}" alt="" width="48" height="48"></span>{{ metadata.title }}</a>
-      </h1>
-      <nav role="navigation" aria-label="Main">
+      </{{ siteTitleTag }}>
+      <nav aria-label="Main">
         {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
         <ul class="nav">
           {%- for entry in collections.all | eleventyNavigation %}
@@ -71,19 +73,19 @@
         <hr>
         <ul class="footer-links">
           <li>
-            <a title="About me" href="{{ '/about/' | url }}">Timothée Pillard</a>
+            <a href="{{ '/about/' | url }}">Timothée Pillard</a>
           </li>
           <li>
-            <a title="hachyderm.io/@tpillard on Mastodon" rel="me" href="https://hachyderm.io/@tpillard">Mastodon</a>
+            <a rel="me" href="https://hachyderm.io/@tpillard">Mastodon</a>
           </li>
           <li>
-            <a title="@tpillard on Twitter" rel="me" href="https://twitter.com/tpillard">Twitter</a>
+            <a rel="me" href="https://twitter.com/tpillard">Twitter</a>
           </li>
           <li>
-            <a title="@tim-pillard on GitHub" rel="me" href="https://github.com/tim-pillard">GitHub</a>
+            <a rel="me" href="https://github.com/tim-pillard">GitHub</a>
           </li>
           <li>
-            <a title="Timothée Pillard on LinkedIn" href="https://www.linkedin.com/in/timoth%C3%A9e-pillard/">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/timoth%C3%A9e-pillard/">LinkedIn</a>
           </li>
         </ul>
     </footer>
