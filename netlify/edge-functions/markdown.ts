@@ -1,11 +1,11 @@
 // Content negotiation for articles: a client that asks for Markdown
 // (Accept: text/markdown) gets the article source instead of the HTML page.
-// Any other request goes straight through to the static page. Each article
-// is also built as <article URL>index.md.
+// Runs only when the Accept header mentions text/markdown, so browsers never
+// reach it. Each article is also built as <article URL>index.md.
 import type { Config, Context } from "@netlify/edge-functions";
 
-// q-value of a media type in an Accept header; 0 when absent.
-function quality(accept: string, type: string): number {
+// q-value of a media type in an Accept header; undefined when absent.
+function quality(accept: string, type: string): number | undefined {
   for (const part of accept.split(",")) {
     const [name, ...params] = part.trim().toLowerCase().split(";");
     if (name.trim() !== type) continue;
@@ -13,19 +13,25 @@ function quality(accept: string, type: string): number {
     const value = q ? Number(q.slice(2)) : 1;
     return Number.isNaN(value) ? 0 : value;
   }
-  return 0;
+  return undefined;
 }
 
 export default async (request: Request, context: Context) => {
   const accept = request.headers.get("accept") || "";
-  const markdown = quality(accept, "text/markdown");
+  const markdown = quality(accept, "text/markdown") ?? 0;
+  // HTML's weight: its own entry, else the wildcards that cover it.
+  const html =
+    quality(accept, "text/html") ??
+    quality(accept, "text/*") ??
+    quality(accept, "*/*") ??
+    0;
   const url = new URL(request.url);
 
   // HTML stays the answer when it is preferred, and for anything that is not
   // an article page.
   if (
     markdown === 0 ||
-    markdown < quality(accept, "text/html") ||
+    markdown < html ||
     !url.pathname.endsWith("/")
   ) {
     return context.next();
@@ -41,6 +47,8 @@ export default async (request: Request, context: Context) => {
     headers: {
       "content-type": "text/markdown; charset=utf-8",
       "vary": "Accept",
+      "x-robots-tag": "noindex",
+      "x-content-type-options": "nosniff",
       "link": `<${url.origin}${url.pathname}>; rel="canonical"`,
     },
   });
@@ -48,6 +56,10 @@ export default async (request: Request, context: Context) => {
 
 export const config: Config = {
   path: "/articles/*",
-  method: ["GET", "HEAD"],
+  excludedPath: "/articles/",
+  // GET only: Netlify rejects HEAD here (GET, POST, PUT, PATCH, DELETE, OPTIONS).
+  method: "GET",
+  // Only requests that mention Markdown reach the function.
+  header: { accept: ".*text/markdown.*" },
   onError: "bypass",
 };
