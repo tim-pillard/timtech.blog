@@ -1,7 +1,6 @@
 ---
 layout: layouts/page.njk
 title: About Me
-templateClass: page
 eleventyNavigation:
   key: About Me
   order: 3
@@ -41,7 +40,7 @@ In 2021/2022, I have analyzed the JavaScript bundles & Babel configuration of tw
 
 ### [parisweb.app (2018)](https://parisweb.app)
 
-Demo apps for the React/Redux performance workshop [“Petits trucs pour rendre vos applications React plus performantes”](https://www.paris-web.fr/2018/ateliers/petits-trucs-pour-rendre-vos-applications-react-plus-performantes.php) performed with [Julien Wajsberg](https://twitter.com/jwajsberg) at a meetup hosted by [Gandi](https://www.gandi.net) and then at [Paris Web](https://www.paris-web.fr) in 2018.
+Demo apps for the React/Redux performance workshop [<span lang="fr">“Petits trucs pour rendre vos applications React plus performantes”</span>](https://www.paris-web.fr/2018/ateliers/petits-trucs-pour-rendre-vos-applications-react-plus-performantes.php) performed with [Julien Wajsberg](https://twitter.com/jwajsberg) at a meetup hosted by [Gandi](https://www.gandi.net) and then at [Paris Web](https://www.paris-web.fr) in 2018.
 The materials produced at this occasion (slides, code, examples) are mostly outdated, yet still somewhat relevant resources to understand and improve performance of React apps, with or without Redux, in 2023.
 
 ### [soundcut/app](https://github.com/soundcut/app)
