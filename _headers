@@ -6,3 +6,12 @@
 /articles/*/index.md
   Content-Type: text/markdown; charset=utf-8
   X-Robots-Tag: noindex
+
+# Security headers. The site has no scripts, no forms and loads nothing from
+# other origins, so the policy only allows its own styles, images and fonts.
+# HSTS is already sent by Netlify.
+/*
+  Content-Security-Policy: default-src 'none'; style-src 'self'; img-src 'self'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Cross-Origin-Opener-Policy: same-origin
