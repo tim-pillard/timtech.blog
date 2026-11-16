@@ -1,7 +1,7 @@
 // Content negotiation for articles: a client that asks for Markdown
 // (Accept: text/markdown) gets the article source instead of the HTML page.
-// Runs only when the Accept header mentions text/markdown, so browsers never
-// reach it. Each article is also built as <article URL>index.md.
+// Any other request goes straight through to the static page. Each article
+// is also built as <article URL>index.md.
 import type { Config, Context } from "@netlify/edge-functions";
 
 // q-value of a media type in an Accept header; 0 when absent.
@@ -49,6 +49,5 @@ export default async (request: Request, context: Context) => {
 export const config: Config = {
   path: "/articles/*",
   method: ["GET", "HEAD"],
-  header: { accept: ".*text/markdown.*" },
   onError: "bypass",
 };
