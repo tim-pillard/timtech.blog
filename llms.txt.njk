@@ -1,0 +1,19 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+---
+# {{ metadata.title | safe }}
+
+> {{ metadata.author.name }}'s personal tech blog. {{ metadata.description }}
+
+Every article is also available as Markdown: add `index.md` to its URL, or request the URL with `Accept: text/markdown`.
+
+## Articles
+{% for post in collections.posts | reverse %}
+- [{{ post.data.title | safe }}]({{ (post.url + "index.md") | url | absoluteUrl(metadata.url) }}): {{ post.data.description | safe }}
+{%- endfor %}
+
+## Optional
+
+- [About the author]({{ "/about/" | url | absoluteUrl(metadata.url) }})
+- [Atom feed]({{ metadata.feed.path | url | absoluteUrl(metadata.url) }})
