@@ -1,5 +1,7 @@
 const { DateTime } = require("luxon");
 const fs = require("fs");
+const path = require("path");
+const crypto = require("crypto");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
@@ -60,9 +62,53 @@ module.exports = function(eleventyConfig) {
     );
   });
 
+  // Images keep a stable address too (/img/...): feeds, share images and
+  // Markdown copies link to it. Pages use the versioned copies below.
   eleventyConfig.addPassthroughCopy("img");
-  eleventyConfig.addPassthroughCopy("css");
-  eleventyConfig.addPassthroughCopy("fonts");
+  eleventyConfig.addWatchTarget("css");
+  eleventyConfig.addWatchTarget("fonts");
+
+  // Versioned assets: /css/index.css is published as
+  // /assets/css/index.<content hash>.css, so /assets/* can be cached forever
+  // (see _headers). Any change to a file gives it a new address.
+  const OUTPUT_DIR = "_site";
+  const versioned = new Map(); // source file -> { mtimeMs, url }
+
+  // A stylesheet is hashed after its font addresses are versioned, so a font
+  // change also changes the stylesheet's address.
+  const assetContent = file => {
+    const content = fs.readFileSync(file);
+    if (path.extname(file) !== ".css") return content;
+    return content.toString().replace(/url\("\.\.\/(fonts\/[^"]+)"\)/g, (match, font) =>
+      `url("${assetUrl(font)}")`
+    );
+  };
+
+  // Returns the versioned address of a source file ("css/index.css") and
+  // writes the copy to the output directory.
+  const assetUrl = file => {
+    const { mtimeMs } = fs.statSync(file);
+    const known = versioned.get(file);
+    const target = url => path.join(OUTPUT_DIR, url);
+    if (known && known.mtimeMs === mtimeMs && fs.existsSync(target(known.url))) return known.url;
+
+    const content = assetContent(file);
+    const hash = crypto.createHash("sha256").update(content).digest("hex").slice(0, 12);
+    const { dir, name, ext } = path.parse(file);
+    const url = `/assets/${dir}/${name}.${hash}${ext}`;
+    fs.mkdirSync(path.dirname(target(url)), { recursive: true });
+    fs.writeFileSync(target(url), content);
+    versioned.set(file, { mtimeMs, url });
+    return url;
+  };
+
+  // In HTML pages only: Markdown and templates keep the plain addresses.
+  eleventyConfig.addTransform("versioned-assets", (content, outputPath) => {
+    if (!outputPath || !outputPath.endsWith(".html")) return content;
+    return content.replace(/\b(src|href)="\/((?:css|fonts|img)\/[^"]+)"/g, (match, attribute, file) =>
+      fs.existsSync(file) ? `${attribute}="${assetUrl(file)}"` : match
+    );
+  });
   eleventyConfig.addPassthroughCopy("public");
   eleventyConfig.addPassthroughCopy("_redirects");
   eleventyConfig.addPassthroughCopy("_headers");
