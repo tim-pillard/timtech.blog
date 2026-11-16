@@ -2,7 +2,7 @@
 title: CSRF When You Least Expect It.
 description: Fun with Cross-Site Request Forgery (CSRF) in a creative Web Timing Attack scenario, highlighting the risks inherent to SameSite=None session cookies.
 image:
-  path: /img/seasurf-kaitlyn-jackson-LVbfbs0BPNY-unsplash.jpg
+  path: /img/seasurf-kaitlyn-jackson-LVbfbs0BPNY-unsplash.png
   alt: "Black & white photo of a surfer falling off their board"
   width: 480
 date: 2022-12-21
@@ -24,7 +24,7 @@ Updated with accurate browser compatibility info, links to the updated standard,
 
 ### CSRF
 
-<img src="/img/seasurf-kaitlyn-jackson-LVbfbs0BPNY-unsplash.jpg" alt="Black & white photo of a surfer falling off their board" width="480" />
+<img src="/img/seasurf-kaitlyn-jackson-LVbfbs0BPNY-unsplash.png" alt="Black & white photo of a surfer falling off their board" width="480" height="320" />
 
 [_Photo by Kaitlyn Jackson - Unsplash_](https://unsplash.com/photos/LVbfbs0BPNY)
 

@@ -2,7 +2,7 @@
 title: TypeScript Legacy Experimental Decorators with Type Metadata in 2023
 description: I've been researching a way to modernize & speed-up a production setup making heavy use of TypeScript Legacy Experimental Decorators & Decorators Type Metadata.
 image:
-  path: /img/benchmark-typescript-decorators-compilation-tsc-vs-vite-swc.webp
+  path: /img/benchmark-typescript-decorators-compilation-tsc-vs-vite-swc.png
   width: 640
   alt: "Screenshot of a benchmark where Vite + SWC is 2.77 times faster than the TypeScript compiler"
 date: 2023-10-14
@@ -19,7 +19,7 @@ standalone: true
 layout: layouts/post.njk
 ---
 
-<img src="/img/benchmark-typescript-decorators-compilation-tsc-vs-vite-swc.webp" width="640" alt="Screenshot of a benchmark where Vite + SWC is 2.77 times faster than the TypeScript compiler" />
+<img src="/img/benchmark-typescript-decorators-compilation-tsc-vs-vite-swc.png" width="640" height="188" alt="Screenshot of a benchmark where Vite + SWC is 2.77 times faster than the TypeScript compiler" />
 
 ## TL;DR
 

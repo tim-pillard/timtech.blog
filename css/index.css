@@ -122,8 +122,15 @@ p:last-child {
 .tmpl-post ul {
   max-width: 37.5em; /* 600px /16 */
 }
+/* height: auto keeps the ratio when a wide image is scaled down; the width
+   and height attributes still reserve its place before it loads. */
 .tmpl-post img {
   max-width: 100%;
+  height: auto;
+}
+
+.tmpl-post img.framed {
+  border: var(--hairline) solid #282c34;
 }
 
 /* 1. prism's CSS only handles pre[class*="language-"] overflow */
@@ -477,14 +484,10 @@ body > header nav {
   gap: var(--space-s);
 }
 
-.postlist-date {
-  font-size: 0.8125em; /* 13px /16 */
-  color: var(--darkgray);
-}
-
 /* The date is a small grey badge. */
 .postlist-date {
   display: inline-block;
+  font-size: 0.8125em; /* 13px /16 */
   padding: var(--space-em-xs) var(--space-em-s);
   margin-right: var(--space-em-s);
   background-color: var(--lightgray);
@@ -625,5 +628,15 @@ h6 {
 @media (max-width: 21.5em) {
   .site-title {
     font-size: 1.25em;
+  }
+}
+
+/* Print: browsers drop backgrounds, which would leave light code text on white
+   paper, and cut long lines. Keep the dark block and wrap. */
+@media print {
+  pre {
+    white-space: pre-wrap;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 }

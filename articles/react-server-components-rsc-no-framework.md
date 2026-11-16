@@ -2,7 +2,7 @@
 title: React Server Components, without a framework?
 description: Can we use React Server Components today, without a framework like Next.js? As our experiment shows, not without significant challenges - for now at least?
 image:
-  path: /img/react-server-components-rsc-no-framework-demo-screenshot.webp
+  path: /img/react-server-components-rsc-no-framework-demo-screenshot.png
   width: 800
   alt: "Screenshot of the RSC Notes App Demo / Playground"
 date: 2023-11-07
@@ -15,7 +15,7 @@ standalone: true
 layout: layouts/post.njk
 ---
 
-<img src="/img/react-server-components-rsc-no-framework-demo-screenshot.webp" alt="Screenshot of the RSC Notes App Demo / Playground" width="800" style="border: 1px solid #282c34;" />
+<img src="/img/react-server-components-rsc-no-framework-demo-screenshot.png" alt="Screenshot of the RSC Notes App Demo / Playground" width="800" height="450" class="framed" />
 
 - [Live RSC Notes App Demo / Playground](https://rsc-demo.timtech.blog)
 - [Source code on GitHub](https://github.com/tim-pillard/rsc-demo)
@@ -214,7 +214,7 @@ I also invite you to take a look at the official demo linked above & related mat
 - [Fastify](https://fastify.dev/) for the HTTP web server
 - [Webpack](https://webpack.js.org) bundler
 - [Babel](https://babeljs.io) JavaScript compiler, for transpiling JSX syntax
-- [a-route](https://github.com/WebReflection/a-route) extremely minimal JavaScript / DOM routing library leveraging Custom Elements (also used in our original [React Notes App](#a-react-notes-app))
+- [a-route](https://github.com/WebReflection/a-route) extremely minimal JavaScript / DOM routing library leveraging Custom Elements (also used in our original [React Notes App](#a-react-notes-app-(2020)))
 
 #### React Canary
 
@@ -346,7 +346,7 @@ await finished(flightStream);
 > Its API is not as stable as that of React, React Native, or React DOM, and does not follow the common versioning scheme.
 > Use it at your own risk._
 
-Provided with a [ReadableStream](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream) of **React Flight serialized Server Components** data, it outputs a **Thenable**, essentially reading & wrapping the data chunks in a **Promise-like data structure**, which can be consumed by APIs dealing with **Promises**, essentially the [**`use()` experimental hook**](#use).
+Provided with a [ReadableStream](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream) of **React Flight serialized Server Components** data, it outputs a **Thenable**, essentially reading & wrapping the data chunks in a **Promise-like data structure**, which can be consumed by APIs dealing with **Promises**, essentially the [**`use()` experimental hook**](#use()).
 This is the main **RSC API** that allows for **React Server Components tree output** computed on the server and **serialized to the React Flight format** to be rendered **on the client**.
 
 ###### Example Usage
@@ -364,7 +364,7 @@ const flightTreePromise = createFromReadableStream(
 
 ##### `createFromFetch` from `react-server-dom-webpack/client`
 
-[`react-server-dom-webpack/client#createFromReadableStream`](https://github.com/facebook/react/blob/ce2bc58a9f6f3b0bfc8c738a0d8e2a5f3a332ff5/packages/react-server-dom-webpack/src/ReactFlightDOMClientBrowser.js#L80) is essentially a wrapper around [`createFromReadableStream` from `react-server-dom-webpack/client`](#createfromreadablestream-from-react-server-dom-webpackclient), unwrapping the `Response` promise to retrieve the underlying `ReadableStream`.
+[`react-server-dom-webpack/client#createFromReadableStream`](https://github.com/facebook/react/blob/ce2bc58a9f6f3b0bfc8c738a0d8e2a5f3a332ff5/packages/react-server-dom-webpack/src/ReactFlightDOMClientBrowser.js#L80) is essentially a wrapper around [`createFromReadableStream` from `react-server-dom-webpack/client`](#createfromreadablestream-from-react-server-dom-webpack%2Fclient), unwrapping the `Response` promise to retrieve the underlying `ReadableStream`.
 It serves the same purpose, but allows for the most common React Flight Client use case: rendering streamed React Server Components serialized output elements on the client, from a single [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) call.
 
 ###### Example Usage
@@ -411,8 +411,8 @@ The rendering of the `<App />` component, even though it is streamed, can be con
 
 ### Server-Side Rendering of Server Components
 
-[React Server & React Flight APIs](#react-server--react-flight-apis) being completely undocumented as mentioned earlier, properly rendering output of React Server Components to HTML, and streaming it efficiently to the browser, without a framework, is quite challenging.
-Indeed, while it is relatively straightforward to obtain the rendering output of a server components tree in the React Flight Format (also known as the **RSC payload**), as a `PipeableStream` or a string using these APIs - [renderToPipeableStream](#rendertopipeablestream-from-react-server-dom-webpackserver) in particular - at the time of writing, I don't know how to efficiently translate it to HTML - and I was too lazy to deep dive in Next.js' implementation.
+[React Server & React Flight APIs](#react-server-%26-react-flight-apis) being completely undocumented as mentioned earlier, properly rendering output of React Server Components to HTML, and streaming it efficiently to the browser, without a framework, is quite challenging.
+Indeed, while it is relatively straightforward to obtain the rendering output of a server components tree in the React Flight Format (also known as the **RSC payload**), as a `PipeableStream` or a string using these APIs - [renderToPipeableStream](#rendertopipeablestream-from-react-server-dom-webpack%2Fserver) in particular - at the time of writing, I don't know how to efficiently translate it to HTML - and I was too lazy to deep dive in Next.js' implementation.
 But for the purposes of learning & demonstration, we really want to do _something, anything_ that ressembles Server Components SSR.
 
 #### An Unorthodox SSR Implementation
@@ -672,12 +672,12 @@ In the browser - with either a specific SSR implementation with RSC streaming su
 </ul>
 ```
 
-But what about [`use()` experimental hook](#use)?
+But what about [`use()` experimental hook](#use())?
 Didn't we say that `use()` allowed us to handle Promises in components, in conjunction with _Suspense_?
 
 ##### use() vs async/await
 
-The [`use()` experimental hook](#use) indeed lets us consume Promises inside React Components.
+The [`use()` experimental hook](#use()) indeed lets us consume Promises inside React Components.
 If we take the code of our `<List />` **server component** from the previous example, remove the **async / await** and replace it with `use(itemsPromise)` instead, our server components behave **almost** the same:
 
 ```js

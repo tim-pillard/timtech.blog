@@ -3,22 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% set documentTitle %}{{ title | safe or "" }}
-    {% if title and not standalone %} - {% endif %}
-    {% if not standalone %}
-      {{ metadata.title | safe }}
-    {% endif %}
-    {% endset %}
+    {%- set documentTitle = (title + " - " + metadata.title) if (title and not standalone) else (title or metadata.title) %}
+    {%- set canonicalUrl = page.url | url | absoluteUrl(metadata.url) %}
+    {%- set isArticle = page.url and page.url != "/articles/" and page.url.indexOf("/articles/") == 0 %}
     <title>{{ documentTitle }}</title>
     <meta name="description" content="{{ description or metadata.description }}">
+    {%- if page.url != "/404.html" %}
+    <link rel="canonical" href="{{ canonicalUrl }}">
+    {%- endif %}
     <link rel="preload" href="{{ '/fonts/firasans-regular.woff2' | url }}" as="font" crossorigin="anonymous">
     <link rel="preload" href="{{ '/fonts/firasans-semibold.woff2' | url }}" as="font" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
     <link rel="stylesheet" href="{{ '/css/prism-base16-monokai.dark.css' | url }}">
     <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
     <link rel="alternate" href="{{ metadata.jsonfeed.path | url }}" type="application/json" title="{{ metadata.title }}">
-    {%- if page.url and page.url != "/articles/" and page.url.indexOf("/articles/") == 0 %}
-    <link rel="alternate" href="{{ (page.url + "index.md") | url }}" type="text/markdown" title="{{ title | safe }} (Markdown)">
+    {%- if isArticle %}
+    <link rel="alternate" href="{{ (page.url + "index.md") | url }}" type="text/markdown" title="{{ title }} (Markdown)">
     {%- endif %}
     <link rel="apple-touch-icon" sizes="180x180" href="{{ '/apple-touch-icon.png' | url }}">
     <link rel="icon" href="{{ '/favicon.ico' | url }}"/>
@@ -30,12 +30,18 @@
     <meta name="theme-color" content="#ffffff">
     <meta property="og:title" content="{{ documentTitle }}"/>
     <meta property="og:description" content="{{ description or metadata.description }}">
-    <meta property="og:type" content="website"/>
-    <meta property="og:url" content="{{ page.url | url | absoluteUrl(metadata.url) }}"/>
+    <meta property="og:type" content="{{ 'article' if isArticle else 'website' }}"/>
+    {%- if isArticle %}
+    <meta property="article:published_time" content="{{ page.date.toISOString() }}"/>
+    {%- endif %}
+    <meta property="og:url" content="{{ canonicalUrl }}"/>
     {% set openGraphImage %}
     {{ image.path if image and image.path else '/img/mozilla-dino-poster-square-greyscale.png' }}
     {% endset %}
     <meta property="og:image" content="{{ openGraphImage | url | absoluteUrl(metadata.url) }}"/>
+    {%- if image and image.alt %}
+    <meta property="og:image:alt" content="{{ image.alt }}"/>
+    {%- endif %}
     <meta property="og:site_name" content="{{ metadata.title }}"/>
     <meta name="twitter:card" content="summary"/>
     <meta name="twitter:creator" content="{{ metadata.author.twitter }}"/>
@@ -45,7 +51,7 @@
       {#- The site title is the h1 on the home page only; elsewhere the page title is. #}
       {%- set siteTitleTag = "h1" if page.url == "/" else "p" %}
       <{{ siteTitleTag }} class="site-title">
-        <a href="{{ '/' | url }}"><span class="site-logo-frame"><img class="site-logo" src="{{ '/img/logo-dino-144.webp' | url }}" alt="" width="48" height="48"></span>{{ metadata.title }}</a>
+        <a href="{{ '/' | url }}"><span class="site-logo-frame"><img class="site-logo" src="{{ '/img/logo-dino-144.png' | url }}" alt="" width="48" height="48"></span>{{ metadata.title }}</a>
       </{{ siteTitleTag }}>
       <nav aria-label="Main">
         {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}

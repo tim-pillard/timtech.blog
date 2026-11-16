@@ -23,7 +23,7 @@ This presentation is also kind of meant as a not so subtle invitation to:
 - further considering *uncontrolled inputs* in form implementations using React
 - keeping an open mind and remaining critical of *“The React Philosophy (tm)”* and *thought leadering*
 
-If you're further interested, in particular by the performance implications of controlled inputs and React performance in general, I invite you to take a look at a previous presentation (in french), and other materials made at the occasion of [Paris Web workshop in 2018: “Petits trucs pour rendre vos applications React plus performantes”](https://parisweb.app).
+If you're further interested, in particular by the performance implications of controlled inputs and React performance in general, I invite you to take a look at a previous presentation (in french), and other materials made at the occasion of [Paris Web workshop in 2018: <span lang="fr">“Petits trucs pour rendre vos applications React plus performantes”</span>](https://parisweb.app).
 
 [Open “Forms handling with React: Giving Up Control (1.41MB pdf)”](/public/timtechblog-dashlane-react-form-handling-intro-giving-up-control-december-2020.pdf).
 

@@ -2,7 +2,7 @@
 title: React memo is good actually
 description: React memo, useMemo & useCallback can be controversial. Let us review the most common misconceptions about them, and see how they're good, actually.
 image:
-  path: /img/always-has-been-meme.webp
+  path: /img/always-has-been-meme.png
   width: 480
   alt: "Wait React meme is good actually? Always has been"
 date: 2023-10-06
@@ -15,7 +15,7 @@ standalone: true
 layout: layouts/post.njk
 ---
 
-<img src="/img/always-has-been-meme.webp" alt="Wait React meme is good actually? Always has been" width="480" />
+<img src="/img/always-has-been-meme.png" alt="Wait React meme is good actually? Always has been" width="480" height="270" />
 
 ## Disclaimer
 
@@ -369,7 +369,7 @@ Further content (including the upcoming [demo](#demo%3A-let's-build-a-notes-app-
 
 ## Prior art: [parisweb.app (2018)](https://parisweb.app)
 
-Demo apps for the React/Redux performance workshop [“Petits trucs pour rendre vos applications React plus performantes”](https://www.paris-web.fr/2018/ateliers/petits-trucs-pour-rendre-vos-applications-react-plus-performantes.php) performed with [Julien Wajsberg](https://twitter.com/jwajsberg) at a meetup hosted by [Gandi](https://www.gandi.net) and then at [Paris Web](https://www.paris-web.fr) in 2018.
+Demo apps for the React/Redux performance workshop [<span lang="fr">“Petits trucs pour rendre vos applications React plus performantes”</span>](https://www.paris-web.fr/2018/ateliers/petits-trucs-pour-rendre-vos-applications-react-plus-performantes.php) performed with [Julien Wajsberg](https://twitter.com/jwajsberg) at a meetup hosted by [Gandi](https://www.gandi.net) and then at [Paris Web](https://www.paris-web.fr) in 2018.
 The materials produced at this occasion (slides, code, examples) are mostly outdated, yet still somewhat relevant resources to understand and improve performance of React apps, with or without Redux, in 2023.
 
 ## Thanks for reading!

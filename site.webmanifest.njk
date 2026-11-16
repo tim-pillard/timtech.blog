@@ -3,8 +3,8 @@ permalink: site.webmanifest
 eleventyExcludeFromCollections: true
 ---
 {
-    "name": "{{ metadata.title }}",
-    "short_name": "{{ metadata.short_name }}",
+    "name": {{ metadata.title | dump | safe }},
+    "short_name": {{ metadata.short_name | dump | safe }},
     "icons": [
         {
             "src": "/android-chrome-192x192.png",

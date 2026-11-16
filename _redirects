@@ -21,6 +21,8 @@
 /tags / 301
 /tags/ / 301
 /tags/external/ / 301
+/tags/async/ / 301
+/tags/node.js/ / 301
 
 # Old CV and résumé URLs all lead to the current CV. The old files are removed from public/
 # so that these rules apply (a redirect does not override an existing file on Netlify).
@@ -28,3 +30,10 @@
 /public/Timoth%C3%A9e%20Pillard's%20CV%202023.pdf /public/Timoth%C3%A9e%20Pillard's%20CV%202026.pdf 301
 /public/Timoth%C3%A9e%20Pillard's%20CV%20TMP%202023.pdf /public/Timoth%C3%A9e%20Pillard's%20CV%202026.pdf 301
 /public/Timoth%C3%A9e%20Pillard's%20R%C3%A9sum%C3%A9%20-%20Front-End%20Architect.pdf /public/Timoth%C3%A9e%20Pillard's%20CV%202026.pdf 301
+
+# Images are PNG only now; the old WebP and JPEG addresses follow.
+/img/always-has-been-meme.webp /img/always-has-been-meme.png 301
+/img/benchmark-typescript-decorators-compilation-tsc-vs-vite-swc.webp /img/benchmark-typescript-decorators-compilation-tsc-vs-vite-swc.png 301
+/img/react-server-components-rsc-no-framework-demo-screenshot.webp /img/react-server-components-rsc-no-framework-demo-screenshot.png 301
+/img/seasurf-kaitlyn-jackson-LVbfbs0BPNY-unsplash.jpg /img/seasurf-kaitlyn-jackson-LVbfbs0BPNY-unsplash.png 301
+/img/logo-dino-144.webp /img/logo-dino-144.png 301

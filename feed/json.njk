@@ -5,13 +5,13 @@ eleventyExcludeFromCollections: true
 ---
 {
   "version": "https://jsonfeed.org/version/1",
-  "title": "{{ metadata.title }}",
-  "home_page_url": "{{ metadata.url }}",
-  "feed_url": "{{ metadata.jsonfeed.url }}",
-  "description": "{{ metadata.description }}",
+  "title": {{ metadata.title | dump | safe }},
+  "home_page_url": {{ metadata.url | dump | safe }},
+  "feed_url": {{ metadata.jsonfeed.url | dump | safe }},
+  "description": {{ metadata.description | dump | safe }},
   "author": {
-    "name": "{{ metadata.author.name }}",
-    "url": "{{ metadata.author.url }}"
+    "name": {{ metadata.author.name | dump | safe }},
+    "url": {{ metadata.author.url | dump | safe }}
   },
   "items": [
     {%- for post in collections.posts | reverse %}
@@ -19,8 +19,8 @@ eleventyExcludeFromCollections: true
     {
       "id": "{{ absolutePostUrl }}",
       "url": "{{ absolutePostUrl }}",
-      "title": "{{ post.data.title }}",
-      "content_html": {% if post.templateContent %}{{ post.templateContent | dump | safe }}{% else %}""{% endif %},
+      "title": {{ post.data.title | dump | safe }},
+      "content_html": {% if post.templateContent %}{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) | dump | safe }}{% else %}""{% endif %},
       "date_published": "{{ post.date | rssDate }}"
     }
     {%- if not loop.last -%}
