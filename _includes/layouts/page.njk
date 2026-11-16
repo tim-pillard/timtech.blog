@@ -2,8 +2,7 @@
 layout: layouts/base.njk
 templateClass: tmpl-post
 ---
-<article>
+{# A page is not an article: no <article>, so no white card (see css/index.css). #}
 <h1>{{ title }}</h1>
 
-  {{ content | safe }}
-</article>
+{{ content | safe }}

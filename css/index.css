@@ -101,8 +101,13 @@ p:last-child {
   margin: 0 var(--space-em-s) 0 0;
 }
 
-/* Article (title, date, tags and body): the same quiet white card as the
-   items of the articles list. */
+/* The rule for white: what sits on white is dated and, once published, about
+   immutable (a full article, or an article summary in a list). What sits on
+   the cream page updates over time: the home intro, pages such as About,
+   headings, tags, header and footer.
+
+   Article (title, date, tags and body): the same quiet white card as the
+   items of the articles list. Pages share the text rules below, not the card. */
 .tmpl-post article {
   padding: var(--space-m);
   margin-bottom: var(--space-m);
@@ -471,10 +476,11 @@ body > header nav {
   margin-bottom: var(--space-em-s);
 }
 
-/* Same size whatever the heading level (h3 on the home page, h2 on lists). */
+/* Same size whatever the heading level (h3 on the home page, h2 on lists):
+   22px, one step under the section headings (24px). The link inherits it. */
 .postlist-title {
   margin: 0 0 var(--space-em-s);
-  font-size: 1.375em;
+  font-size: 1.375em; /* 22px /16 */
 }
 
 .postlist-item-metadata {
@@ -494,11 +500,6 @@ body > header nav {
   border-radius: 0.25em;
   font-weight: 700;
   word-spacing: -0.04em;
-}
-
-.tmpl-home .postlist-link {
-  font-size: 1.1875em; /* 19px /16 */
-  font-weight: 700;
 }
 
 /* Label of the next/previous block under an article. Not a heading, so it
