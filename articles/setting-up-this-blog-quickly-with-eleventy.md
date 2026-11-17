@@ -83,7 +83,7 @@ Absolutely not, it's just the bare minimum for me to push my content out there.
 The fact that I was able to hack together a decent blog out of it without being familiar with it or reading any documentation puts it in a good position I believe.
 There's one thing in particular that I appreciate of `Eleventy`: I mentionned earlier that the other options I had tried previously didn't satisfy me and, in some way, would be forcing too much work on me to remove all of the stuff that I did not want, and so far, `Eleventy` hasn't given me any of those.
 
-<p><img src="/img/timtech-blog-post-requests.png" alt="timtech.blog post requests as seen in Firefox Devtools" width="1061" height="170" loading="lazy" /></p>
+<p><img src="/img/timtech-blog-post-requests.png" alt="Firefox DevTools network panel: 6 requests and 44.81 KB transferred to load this article, in 458 ms" width="1061" height="170" loading="lazy" /></p>
 
 ### What next?
 

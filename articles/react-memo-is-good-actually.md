@@ -4,7 +4,7 @@ description: React memo, useMemo & useCallback can be controversial. Let us revi
 image:
   path: /img/always-has-been-meme.png
   width: 480
-  alt: "Wait React meme is good actually? Always has been"
+  alt: "“Always has been” astronaut meme: “Wait, React.memo is good actually?” “Always has been.”"
 date: 2023-10-06
 tags:
   - react
@@ -15,7 +15,7 @@ standalone: true
 layout: layouts/post.njk
 ---
 
-<img src="/img/always-has-been-meme.png" alt="Wait React meme is good actually? Always has been" width="480" height="270" />
+<img src="/img/always-has-been-meme.png" alt="“Always has been” astronaut meme: “Wait, React.memo is good actually?” “Always has been.”" width="480" height="270" />
 
 ## Disclaimer
 
