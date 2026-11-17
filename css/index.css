@@ -9,7 +9,7 @@
   /* Links inside article and page content: a plain, classic blue (6.9:1 on --page).
      Visited links look the same as unvisited ones, everywhere. */
   --link: #0f52ba;
-  --white: #fff;
+  --white: #fefefe;
   --page: #fffaf5;
   --content-width: 75rem;
 
@@ -32,6 +32,9 @@
   /* px: hairlines. Borders and outlines stay one device-independent pixel,
      whatever the font size or zoom setting. */
   --hairline: 1px;
+  /* Reading width for running text: about 75 characters per line. In em, so
+     it follows the text size. */
+  --measure: 37.5em; /* 600px /16 */
 }
 
 * {
@@ -77,9 +80,11 @@ body > main {
   flex: 1 0 auto;
 }
 
+/* Top border only: an empty box with a border on all sides draws two lines. */
 hr {
   margin: var(--space-m) 0;
-  border: var(--hairline) dashed var(--lightgray);
+  border: 0;
+  border-top: var(--hairline) dashed var(--lightgray);
 }
 
 ul,
@@ -124,8 +129,10 @@ p:last-child {
 }
 
 .tmpl-post p,
-.tmpl-post ul {
-  max-width: 37.5em; /* 600px /16 */
+.tmpl-post ul,
+.tmpl-post ol,
+.postlist-item p {
+  max-width: var(--measure);
 }
 /* height: auto keeps the ratio when a wide image is scaled down; the width
    and height attributes still reserve its place before it loads. */
@@ -146,6 +153,9 @@ p:last-child {
 
 /* 2. prism's CSS only sets vertical padding for pre[class*="language-"] */
 .tmpl-post pre[class*="language-"] {
+  /* 8px between code blocks that follow each other, highlighted or plain
+     (the syntax theme sets 0.5em, 7px here). */
+  margin: var(--space-s) 0;
   /* 2. */
   padding-left: var(--space-em-m);
   padding-right: var(--space-em-m);
@@ -270,8 +280,14 @@ pre {
   -webkit-hyphens: none;
   hyphens: none;
   padding: var(--space-em-m);
-  margin: var(--space-em-s) 0;
+  margin: var(--space-s) 0;
   background-color: #f6f6f6;
+}
+
+/* Browsers indent quotes 40px on each side, which leaves a narrow column on
+   small phones. */
+blockquote {
+  margin: var(--space-em-m);
 }
 
 code:not(pre > code) {
@@ -345,7 +361,11 @@ a[href].accent-link:focus-visible {
 /* Header */
 /* The site title is the h1 on the home page only; on the other pages it is a
    plain element and the page title is the h1. Same look either way. */
+/* display: flex, so the link is not laid out on a text line: a text line
+   keeps room under the logo for descenders, which pushed the logo about 5px
+   above the centre of the header. */
 .site-title {
+  display: flex;
   margin: 0;
   font-size: 1.5em; /* 24px /16 */
   font-weight: 700;
@@ -383,14 +403,14 @@ a[href].accent-link:focus-visible {
   background-color: var(--red);
 }
 
-/* Keyboard focus on the logo link: a black ring around the logo itself,
+/* Keyboard focus on the logo link: a dark ring around the logo itself,
    in place of the browser ring around the whole link. */
 .site-title a:focus-visible {
   outline: none;
 }
 
 .site-title a:focus-visible .site-logo-frame {
-  outline: var(--hairline) solid #000;
+  outline: var(--hairline) solid var(--darkgray);
   outline-offset: 0;
 }
 
@@ -445,7 +465,7 @@ body > header nav {
   color: var(--red);
 }
 
-/* Hover, keyboard focus, pressed, and current page: the colours swap (white on red, 5.25:1),
+/* Hover, keyboard focus, pressed, and current page: the colours swap (white on red, 5.2:1),
    with no underline. */
 .nav-item-highlight a[href]:hover,
 .nav-item-highlight a[href]:focus-visible,
@@ -472,7 +492,6 @@ body > header nav {
 }
 
 .postlist-item .postlist-date {
-  margin-right: 0;
   margin-bottom: var(--space-em-s);
 }
 
@@ -495,7 +514,6 @@ body > header nav {
   display: inline-block;
   font-size: 0.8125em; /* 13px /16 */
   padding: var(--space-em-xs) var(--space-em-s);
-  margin-right: var(--space-em-s);
   background-color: var(--lightgray);
   border-radius: 0.25em;
   font-weight: 700;
@@ -602,21 +620,32 @@ h2 {
   font-size: 1.5em;
 }
 
+/* Clear steps between levels: 30, 24, 20, 18, then body size in bold. */
 h3 {
-  font-size: 1.375em;
+  font-size: 1.25em; /* 20px /16 */
 }
 
 h4 {
-  font-size: 1.25em;
+  font-size: 1.125em; /* 18px /16 */
 }
 
 h5,
 h6 {
-  font-size: 1.1875em;
+  font-size: 1em;
 }
 
 /* Phones (under 480px at the default font size): in an article header, the
    tags go on their own line under the date. */
+/* Phones: the page margin plus the card padding left 41 to 44 characters per
+   line. Half the side padding in the white cards gives the text more room. */
+@media (max-width: 30em) {
+  .tmpl-post article,
+  .postlist-item {
+    padding-left: var(--space-s);
+    padding-right: var(--space-s);
+  }
+}
+
 @media (max-width: 30em) {
   main header {
     flex-direction: column;

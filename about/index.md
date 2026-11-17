@@ -1,6 +1,7 @@
 ---
 layout: layouts/page.njk
 title: About Me
+description: About Timothée “Tim” Pillard, Staff Software Engineer. Current and past projects, CV and how to get in touch.
 eleventyNavigation:
   key: About Me
   order: 3
@@ -27,7 +28,7 @@ Passionate about the Web, I am proficient with JavaScript, Web technologies, the
 ## Current Projects
 
 - [viteup](https://github.com/tim-pillard/viteup) (2024): an opinionated way to compile TypeScript libraries, powered by Vite and SWC.
-- [vite-plugin-swc-transform](https://www.npmjs.com/package/vite-plugin-swc-transform) (2023): a Vite plugin to transform code with SWC.
+- [vite-plugin-swc-transform](https://www.npmjs.com/package/vite-plugin-swc-transform) (2023): a Vite plugin to transform code with SWC. Read [TypeScript Legacy Experimental Decorators with Type Metadata in 2023](/articles/transform-typescript-legacy-decorators-vite-swc-plugin/).
 
 ## Recent Projects
 

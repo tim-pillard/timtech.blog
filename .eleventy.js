@@ -30,6 +30,11 @@ module.exports = function(eleventyConfig) {
     return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat('yyyy-LL-dd');
   });
 
+  // A value as JSON, safe inside a <script> data block ("<" cannot close it).
+  eleventyConfig.addFilter("jsonForScript", value =>
+    JSON.stringify(value).replace(/</g, "\\u003c")
+  );
+
   // Get the first `n` elements of a collection.
   eleventyConfig.addFilter("head", (array, n) => {
     if( n < 0 ) {
@@ -112,6 +117,15 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("public");
   eleventyConfig.addPassthroughCopy("_redirects");
   eleventyConfig.addPassthroughCopy("_headers");
+
+  // Code blocks scroll sideways when a line is long. Safari only lets the
+  // keyboard scroll a block that can take focus, so every <pre> gets one tab
+  // stop. The markup stays <pre><code>: nothing changes for screen readers
+  // or robots.
+  eleventyConfig.addTransform("focusable-code-blocks", (content, outputPath) => {
+    if (!outputPath || !outputPath.endsWith(".html")) return content;
+    return content.replace(/<pre(?=[ >])(?![^>]*\btabindex=)/g, `<pre tabindex="0"`);
+  });
 
   /* Markdown Overrides */
   let markdownLibrary = markdownIt({

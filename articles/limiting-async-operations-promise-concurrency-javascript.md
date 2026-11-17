@@ -14,7 +14,8 @@ layout: layouts/post.njk
 Today's post is about a little trick I have learned about 2years ago, and that I have since used numerous times in short Node.js scripts I had to write.
 It really isn't much, but I guess it may be helpful to others, and probably is an alright first JavaScript post on this blog.
 
-> _Say one has a list of things, and for every of these things, one needs to perform an asynchronous operation that returns a Promise, and be notified when all operations have been performed._ > _How does one limit the number of asynchronous operations being performed conccurently? Without 3rd party dependencies and just a few lines of code?_
+> _Say one has a list of things, and for every of these things, one needs to perform an asynchronous operation that returns a Promise, and be notified when all operations have been performed._
+> _How does one limit the number of asynchronous operations being performed conccurently? Without 3rd party dependencies and just a few lines of code?_
 
 Are you seeing the problem yet? Let's build some context:
 
