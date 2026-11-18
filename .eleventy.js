@@ -30,6 +30,23 @@ module.exports = function(eleventyConfig) {
     return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat('yyyy-LL-dd');
   });
 
+  // Meta description of a tag page: names its articles, newest first, as
+  // many as fit in about 155 characters (what search results show).
+  eleventyConfig.addFilter("tagDescription", (posts, tag) => {
+    const titles = [...(posts || [])].sort((a, b) => b.date - a.date).map(post => `“${post.data.title.replace(/\.$/, "")}”`);
+    const count = titles.length === 1 ? "1 article" : `${titles.length} articles`;
+    let text = `${count} tagged “${tag}” on Tim’s Tech Blog: ${titles[0]}`;
+    let shown = 1;
+    while (shown < titles.length && `${text}, ${titles[shown]}`.length <= 140) {
+      text += `, ${titles[shown]}`;
+      shown += 1;
+    }
+    const rest = titles.length - shown;
+    const full = rest ? `${text} and ${rest} more.` : `${text}.`;
+    // A very long first title: keep the short form rather than go over.
+    return full.length <= 155 ? full : `${count} tagged “${tag}” on Tim’s Tech Blog.`;
+  });
+
   // Feeds: drop the "#" link next to each heading. It points inside the page,
   // so it leads nowhere in a feed reader and reads as a stray character.
   // Other in-page links ("#section") get the article address in front, so

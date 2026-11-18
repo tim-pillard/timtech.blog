@@ -11,9 +11,9 @@ pagination:
     - tagList
   addAllPagesToCollections: true
 layout: layouts/home.njk
+isTagPage: true
 eleventyComputed:
   title: “{{ tag | safe }}” articles
-  description: Articles tagged “{{ tag | safe }}” on Tim’s Tech Blog.
 permalink: /tags/{{ tag | lower }}/
 ---
 <h1><em>“{{ tag }}”</em> articles</h1>
