@@ -30,6 +30,16 @@ module.exports = function(eleventyConfig) {
     return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat('yyyy-LL-dd');
   });
 
+  // Feeds: drop the "#" link next to each heading. It points inside the page,
+  // so it leads nowhere in a feed reader and reads as a stray character.
+  // Other in-page links ("#section") get the article address in front, so
+  // they open the right place on the site.
+  eleventyConfig.addFilter("forFeed", (html, postUrl) =>
+    (html || "")
+      .replace(/ ?<a class="direct-link"[^>]*>#<\/a>/g, "")
+      .replace(/href="#/g, `href="${postUrl}#`)
+  );
+
   // A value as JSON, safe inside a <script> data block ("<" cannot close it).
   eleventyConfig.addFilter("jsonForScript", value =>
     JSON.stringify(value).replace(/</g, "\\u003c")

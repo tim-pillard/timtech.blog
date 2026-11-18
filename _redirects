@@ -23,6 +23,8 @@
 /tags/external/ / 301
 /tags/async/ / 301
 /tags/node.js/ / 301
+/tags/tips%20&%20tricks/ / 301
+/tags/tips%20%26%20tricks/ / 301
 
 # Old CV and résumé URLs all lead to the current CV. The old files are removed from public/
 # so that these rules apply (a redirect does not override an existing file on Netlify).
