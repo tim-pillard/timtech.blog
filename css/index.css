@@ -379,30 +379,18 @@ a[href].accent-link:focus-visible {
   align-items: center;
 }
 
-/* The logo is a greyscale image. On hover or keyboard focus it turns red with
-   CSS only: the frame behind it takes the site red and the image is multiplied
-   onto it, so white areas become red and black stays black. No second image. */
+/* The logo: a slightly rounded square. */
 .site-logo-frame {
   display: inline-flex;
   margin-right: var(--space-em-s);
   border-radius: 0.375em;
   overflow: hidden;
-  isolation: isolate;
-  transition: background-color 0.2s ease-out;
 }
 
 .site-logo {
   display: block;
   width: 2em; /* 48px /24 */
   height: 2em;
-  mix-blend-mode: multiply;
-  transition: filter 0.2s ease-out;
-}
-
-.site-title a:hover .site-logo-frame,
-.site-title a:focus-visible .site-logo-frame,
-.site-title a:active .site-logo-frame {
-  background-color: var(--red);
 }
 
 /* Keyboard focus on the logo link: a dark ring around the logo itself,
@@ -414,20 +402,6 @@ a[href].accent-link:focus-visible {
 .site-title a:focus-visible .site-logo-frame {
   outline: var(--hairline) solid var(--darkgray);
   outline-offset: 0;
-}
-
-/* Lifts the mid-greys so the red stays bright instead of muddy. */
-.site-title a:hover .site-logo,
-.site-title a:focus-visible .site-logo,
-.site-title a:active .site-logo {
-  filter: brightness(1.35) contrast(1.1);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .site-logo-frame,
-  .site-logo {
-    transition: none;
-  }
 }
 
 .site-title a:not(:hover) {
